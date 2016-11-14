@@ -1,6 +1,7 @@
 {
     "name": "ors/orsapi",
     "description": "ORS API Laravel Wrapper",
+    "keywords": ["laravel"],
     "authors": [
         {
             "name": "ors",
