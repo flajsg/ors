@@ -2,6 +2,7 @@
     "name": "ors/orsapi",
     "description": "ORS API Laravel Wrapper",
     "keywords": ["laravel"],
+    "license": "MIT",
     "authors": [
         {
             "name": "ors",
