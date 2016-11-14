@@ -1,0 +1,24 @@
+{
+    "name": "ors/orsapi",
+    "description": "ORS API Laravel Wrapper",
+    "authors": [
+        {
+            "name": "ors",
+            "email": "gregor.flajs@ors.si"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*",
+        "ors/support": "*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Ors\\Orsapi\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
