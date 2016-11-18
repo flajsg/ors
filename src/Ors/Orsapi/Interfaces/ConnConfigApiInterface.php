@@ -13,7 +13,7 @@ interface ConnConfigApiInterface {
 	 *
 	 * @link http://ors.si/wiki/doku.php?id=ors:orsxml2:connconfig-api#list-connections
 	 *
-	 * @return \Ors\Orsapi\Connection
+	 * @return Collection|\Ors\Orsapi\Connection
 	 * @throws \Ors\Orsapi\OrsApiException
 	 */
 	public function listConnections();
@@ -26,7 +26,7 @@ interface ConnConfigApiInterface {
 	 * @param array $tocs
 	 * 		a list of tocs for which we need information about connection they are mapped to.
 	 *
-	 * @return\Ors\Orsapi\ConnConfig\Connection
+	 * @return Collection|\Ors\Orsapi\ConnConfig\ConectionTocMap
 	 * @throws \Ors\Orsapi\OrsApiException
 	 */
 	public function mapTocsToConnections(array $tocs);
