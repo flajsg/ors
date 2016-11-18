@@ -25,6 +25,14 @@ class Connection extends Eloquent {
 	}
 	
 	/**
+	 * Return connection_id alias
+	 * @return string
+	 */
+	public function getIdAttribute() {
+		return $this->connection_id;
+	}
+	
+	/**
 	 * Set tocs list
 	 * @param array $tocs
 	 */
@@ -42,7 +50,7 @@ class Connection extends Eloquent {
 	
 	public function toArray() {
 		$array = parent::toArray();
-		$array['tocs'] = $this->tocs;
+		$array['tocs'] = $this->Tocs;
 		return $array;
 	}
 }
