@@ -42,7 +42,7 @@ class ConnectionDescription extends Eloquent {
 	
 	public function toArray() {
 	    $array = parent::toArray();
-	    $array['values'] = $this->values;
+	    $array['values'] = $this->Values;
 	    return $array;
 	}
 }
