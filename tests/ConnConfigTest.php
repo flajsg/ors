@@ -67,7 +67,7 @@ class ConnConfigTest extends TestCase
     		
     		// Reset toc to original value
     		$res = $api->assignTocToConnection(array(
-    		    new \Ors\Orsapi\ConnConfig\ConectionTocMap(array('toc' => 'ODP', 'connection' => "sellit", 'group' => 1))
+    		    new \Ors\Orsapi\ConnConfig\ConectionTocMap(array('toc' => 'ODP', 'connection' => $tocs_org->connection, 'group' => $tocs_org->group))
     		));
     		
     		$tocs_new = $api->mapTocsToConnections(['ODP'])->first();
