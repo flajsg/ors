@@ -40,13 +40,10 @@ class ConnConfigApiWrapper extends OrsApiBase {
 	 * Return Connection object based on connection_id
 	 * 
 	 * @param int $connection_id
-	 * @return \Ors\ConnConfig\Connection;
+	 * @return \Ors\ConnConfig\Connection
 	 */
 	public function findConnection($connection_id) {
-		$connections = $this->handler()->listConnections();
-		Common::ppre($connection_id);
-		//Common::ppre($connections->toArray());
-		return $connections->find($connection_id);
+		return $this->handler()->listConnections()->find($connection_id);
 	}
 	
 	public function listConnections() {
@@ -55,6 +52,16 @@ class ConnConfigApiWrapper extends OrsApiBase {
 	
 	public function mapTocsToConnections($tocs) {
 	    return $this->handler()->mapTocsToConnections($tocs);
+	}
+	
+	/**
+	 * Return mapped toc information
+	 *
+	 * @param int $connection_id
+	 * @return \Ors\ConnConfig\ConectionTocMap
+	 */
+	public function findMappedToc($toc) {
+	    return $this->handler()->mapTocsToConnections([$toc])->first();
 	}
 	
 	public function assignTocToConnection($tocs) {
