@@ -41,13 +41,13 @@ class ConnectionConfiguration extends Eloquent {
 	 * Return configuration list
 	 * @return array
 	 */
-	public function getconfigurationAttribute() {
+	public function getConfigurationAttribute() {
 	    return $this->configuration;
 	}
 	
 	public function toArray() {
 	    $array = parent::toArray();
-	    $array['configuration'] = $this->configuration;
+	    $array['configuration'] = $this->Configuration;
 	    return $array;
 	}
 }
