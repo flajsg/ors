@@ -115,7 +115,7 @@ class ConnConfigApiHandler extends BaseHandler implements ConnConfigApiInterface
 		    return $list;
 		
 		foreach ($response['toc-map'] as $toc => $data) {
-	    	$list->push(new \Ors\Orsapi\ConnConfig\ConectionTocMap(Common::_dashToUnderscore($data)+array('toc' => $toc)));
+	    	$list->push(new \Ors\Orsapi\ConnConfig\ConnectionTocMap(Common::_dashToUnderscore($data)+array('toc' => $toc)));
 		}
 		
 		return $list;
@@ -212,8 +212,8 @@ class ConnConfigApiHandler extends BaseHandler implements ConnConfigApiInterface
 	    // debug
 	    Common::ppreDebug( $request, 'request');
 	    Common::ppreDebug( $response, 'response');
-	    Common::ppre( $request, 'request');
-	    Common::ppre( $response, 'response');
+	    //Common::ppre( $request, 'request');
+	    //Common::ppre( $response, 'response');
 	
 	    // check for error
 	    $this->_error($response);

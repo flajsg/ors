@@ -26,7 +26,7 @@ interface ConnConfigApiInterface {
 	 * @param array $tocs
 	 * 		a list of tocs for which we need information about connection they are mapped to.
 	 *
-	 * @return Collection|\Ors\Orsapi\ConnConfig\ConectionTocMap
+	 * @return Collection|\Ors\Orsapi\ConnConfig\ConnectionTocMap
 	 * @throws \Ors\Orsapi\OrsApiException
 	 */
 	public function mapTocsToConnections(array $tocs);
@@ -36,7 +36,7 @@ interface ConnConfigApiInterface {
 	 * 
 	 * @link http://ors.si/wiki/doku.php?id=ors:orsxml2:connconfig-api#assign-toc-to-connection
 	 *  
-	 * @param Collection|array|\Ors\Orsapi\ConnConfig\ConectionTocMap $tocs
+	 * @param Collection|array|\Ors\Orsapi\ConnConfig\ConnectionTocMap $tocs
 	 * 
 	 * @return boolean
 	 * @throws \Ors\Orsapi\OrsApiException
@@ -67,7 +67,7 @@ interface ConnConfigApiInterface {
 	 * 		agency id (account id). If agid is null, then general connection configuration is returned, 
 	 * 		else agency specific configuration is returned.
 	 *
-	 * @return Collection|\Ors\Orsapi\ConnConfig\ConnectionConfiguration
+	 * @return \Ors\Orsapi\ConnConfig\ConnectionConfiguration
 	 * @throws \Ors\Orsapi\OrsApiException
 	 */
 	public function getConfiguration($connection, $agid = null);

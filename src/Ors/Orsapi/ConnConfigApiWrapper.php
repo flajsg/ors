@@ -58,7 +58,7 @@ class ConnConfigApiWrapper extends OrsApiBase {
 	 * Return mapped toc information
 	 *
 	 * @param int $connection_id
-	 * @return \Ors\ConnConfig\ConectionTocMap
+	 * @return \Ors\ConnConfig\ConnectionTocMap
 	 */
 	public function findMappedToc($toc) {
 	    return $this->handler()->mapTocsToConnections([$toc])->first();

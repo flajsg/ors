@@ -6,12 +6,12 @@ use ConnConfig;
 /**
  * ORS Connection toc-map model.
  *
- * To chich connection is specific tos mapped.
+ * To which connection is specific tos mapped.
  *
- * @author gregor
+ * @author Gregor Flajs
  *
  */
-class ConectionTocMap extends Eloquent{
+class ConnectionTocMap extends Eloquent{
 	
 	protected $fillable = ['toc', 'connection', 'group'];
 	
