@@ -41,7 +41,7 @@ class ConnConfigTest extends TestCase
     		$tocs = $api->mapTocsToConnections(['5VF', 'FTI', 'ODP', 'SONH', 'PALM']);
     		$this->assertTrue(!$tocs->isEmpty());
     		//$this->assertSame('sellit', $tocs->find('ODP')->connection);
-    		$this->assertSame('old-ors', $tocs->find('FTI')->connection);
+    		$this->assertSame('traffics', $tocs->find('FTI')->connection);
     	} catch (\Ors\Orsapi\OrsApiException $e) {
     		echo $e;
     	}
@@ -56,7 +56,7 @@ class ConnConfigTest extends TestCase
     		
     		// Set different connection and group
     		$res = $api->assignTocToConnection(array(
-				new \Ors\Orsapi\ConnConfig\ConectionTocMap(array('toc' => 'ODP', 'connection' => 'old-ors', 'group' => 10))
+				new \Ors\Orsapi\ConnConfig\ConnectionTocMap(array('toc' => 'ODP', 'connection' => 'old-ors', 'group' => 10))
     		));
     		
     		$tocs_new = $api->mapTocsToConnections(['odp'])->first();
@@ -67,7 +67,7 @@ class ConnConfigTest extends TestCase
     		
     		// Reset toc to original value
     		$res = $api->assignTocToConnection(array(
-    		    new \Ors\Orsapi\ConnConfig\ConectionTocMap(array('toc' => 'ODP', 'connection' => $tocs_org->connection, 'group' => $tocs_org->group))
+    		    new \Ors\Orsapi\ConnConfig\ConnectionTocMap(array('toc' => 'ODP', 'connection' => $tocs_org->connection, 'group' => $tocs_org->group))
     		));
     		
     		$tocs_new = $api->mapTocsToConnections(['ODP'])->first();
