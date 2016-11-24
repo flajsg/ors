@@ -1,7 +1,9 @@
 <?php namespace Ors\Orsapi;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Config;
 use Ors\Orsapi\Handlers\ConnConfigApiHandler;
+use Ors\Orsapi\Handlers\PassengerApiHandler;
 
 class OrsapiServiceProvider extends ServiceProvider {
 
@@ -30,6 +32,7 @@ class OrsapiServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		$this->registerConnConfigApi();
+		$this->registerPassengerApi();
 	}
 
 	/**
@@ -38,7 +41,7 @@ class OrsapiServiceProvider extends ServiceProvider {
 	 * @return array
 	 */
 	public function provides() {
-		return array('orsapi.connconfig');
+		return array('orsapi.connconfig', 'orsapi.passenger');
 	}
 	
 	/**
@@ -50,6 +53,18 @@ class OrsapiServiceProvider extends ServiceProvider {
 		$this->app['orsapi.connconfig'] = $this->app->share(function($app)
 	    {
 	        return new \Ors\Orsapi\ConnConfigApiWrapper(new ConnConfigApiHandler());
+	    }
+		);
+	}
+	/**
+	 * Register PassengerApiWrapper
+	 * @return \Ors\Orsapi\PassengerApiWrapper
+	 */
+	protected function registerPassengerApi()
+	{
+		$this->app['orsapi.passenger'] = $this->app->share(function($app)
+	    {
+	        return new \Ors\Orsapi\PassengerApiWrapper(new PassengerApiHandler(Config::get('orsapi::passenger.agency_id'), Config::get('orsapi::passenger.master_key')));
 	    });
 	}
 
