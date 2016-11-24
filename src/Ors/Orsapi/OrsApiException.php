@@ -2,7 +2,7 @@
 use PDOException;
 use Lang;
 
-class OrsApiException extends  PDOException {
+class OrsApiException extends PDOException {
 	
 	/**
 	 * Ors Api request id
@@ -29,7 +29,7 @@ class OrsApiException extends  PDOException {
 	
 	// custom string representation of object
 	public function __toString() {
-	    return __CLASS__ . ": [{$this->code}]: {$this->message}\n";
+	    return __CLASS__ . ": [{$this->code}]: {$this->message} --rqid:{$this->rqid}\n";
 	}
 	
 	public function setNote($note) {
@@ -51,7 +51,7 @@ class OrsApiException extends  PDOException {
 	public function __toJson() {
 		return AjaxResponse::error($this->message);
 	}
-
+	
 	/**
 	 * Set note by exception code.
 	 * By calling this method, you will overwrite current note value.
