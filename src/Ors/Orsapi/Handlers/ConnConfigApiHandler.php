@@ -30,12 +30,12 @@ class ConnConfigApiHandler extends BaseHandler implements ConnConfigApiInterface
 	}
 	
 	/**
-	 * @see \ORS\Api\Handlers\OrsApiBaseHandler::setApiHeader()
+	 * @see \Ors\Orsapi\Handlers\BaseHandler::setApiHeader()
 	 */
 	protected function setApiHeader($header) {}
 	
 	/**
-	 * @see \ORS\Api\Handlers\OrsApiBaseHandler::setRqid()
+	 * @see \Ors\Orsapi\Handlers\BaseHandler::setRqid()
 	 */
 	protected function setRqid($response) {
 	    $this->rqid = !empty($response['request-id']) ? $response['request-id'] : '';
