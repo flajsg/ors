@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Database\Eloquent\Collection;
 use Ors\Support\Common;
 use Ors\Support\SmartAutocompleteInterface;
+use Ors\Orsapi\Facades\PassengerApi;
 
 /**
  * ORM Passenger model.
@@ -48,7 +49,7 @@ class ORMPassenger extends Eloquent implements SmartAutocompleteInterface {
 	public function linkedTo() {
 		if (empty($this->merged_to))
 			return null;
-		return self::api()->find($this->merged_to);
+		return PassengerApi::find($this->merged_to);
 	}
 	
 	/*
@@ -236,17 +237,6 @@ class ORMPassenger extends Eloquent implements SmartAutocompleteInterface {
 	 */
 	public function getTravelerIdAttribute() {
 	    return $this->attributes['id'];
-	}
-	
-	/*
-	 * STATICS
-	 */
-	
-	/**
-	 * @return \Ors\Orsapi\PassengerApiWrapper
-	 */
-	public static function api() {
-		return PassengerApi;
 	}
 	
 }
