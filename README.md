@@ -14,6 +14,7 @@ To include service provider add this line in 'providers' array:
 And make sure you've added aliases in 'aliases' array:
 
 	'ConnConfig'		=> 'Ors\Orsapi\Facades\ConnConfigApi',
+	'PassengerApi'		=> 'Ors\Orsapi\Facades\PassengerApi',
   
 **Publishing migrations and configuration:**
 
@@ -26,3 +27,8 @@ You will need some custom configurations so make sure you have published config 
 A list of available ORS API connections:
 
 	$connections = ConnConfig::listConnections()
+
+A list of agency passengers:
+
+	$passengers = PassengerApi::all()
+	
