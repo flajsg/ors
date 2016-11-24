@@ -11,8 +11,6 @@ interface ConnConfigApiInterface {
 	/**
 	 * Lists all registered connections on ORSXML2 database and prints out their information and assigned tour operators. 
 	 *
-	 * @link http://ors.si/wiki/doku.php?id=ors:orsxml2:connconfig-api#list-connections
-	 *
 	 * @return Collection|\Ors\Orsapi\Connection
 	 * @throws \Ors\Orsapi\OrsApiException
 	 */
@@ -20,8 +18,6 @@ interface ConnConfigApiInterface {
 	
 	/**
 	 * Given list of tour operator codes, maps to what connection and group each tour operator is assigned to. .
-	 *
-	 * @link http://ors.si/wiki/doku.php?id=ors:orsxml2:connconfig-api#map-tocs-to-connections
 	 *
 	 * @param array $tocs
 	 * 		a list of tocs for which we need information about connection they are mapped to.
@@ -34,8 +30,6 @@ interface ConnConfigApiInterface {
 	/**
 	 * Maps tour operator and their groups to specific connection.
 	 * 
-	 * @link http://ors.si/wiki/doku.php?id=ors:orsxml2:connconfig-api#assign-toc-to-connection
-	 *  
 	 * @param Collection|array|\Ors\Orsapi\ConnConfig\ConnectionTocMap $tocs
 	 * 
 	 * @return boolean
@@ -45,8 +39,6 @@ interface ConnConfigApiInterface {
 	
 	/**
 	 * Maps tour operator and their groups to specific connection.
-	 *
-	 * @link http://ors.si/wiki/doku.php?id=ors:orsxml2:connconfig-api#describe-connection
 	 *
 	 * @param string $connection
 	 * 		connection id
@@ -58,8 +50,6 @@ interface ConnConfigApiInterface {
 	
 	/**
 	 * Returns configuration of specific connection. 
-	 *
-	 * @link http://ors.si/wiki/doku.php?id=ors:orsxml2:connconfig-api#get-configuration
 	 *
 	 * @param string $connection
 	 * 		connection id
@@ -74,8 +64,6 @@ interface ConnConfigApiInterface {
 	
 	/**
 	 * Sets either global or agency-specific configuration on connection.  
-	 *
-	 * @link http://ors.si/wiki/doku.php?id=ors:orsxml2:connconfig-api#set-configuration
 	 *
 	 * @param array|\Ors\Orsapi\ConnConfig\ConnectionConfiguration $configuration
 	 * @param string $connection
