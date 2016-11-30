@@ -48,7 +48,7 @@ class PassengerApiTest extends TestCase
 		
 	public function login() {
 		$this->user_id = Config::get('orsapi::passenger.test_user_id');
-		$auth_model = Config::get('orsapi::passenger.auth_model');
+		$auth_model = Config::get('orsapi::auth_model');
 		if (class_exists($auth_model))
 			$user = $auth_model::find($this->user_id);
 		else

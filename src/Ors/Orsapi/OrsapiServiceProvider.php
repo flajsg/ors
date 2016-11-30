@@ -4,6 +4,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Config;
 use Ors\Orsapi\Handlers\ConnConfigApiHandler;
 use Ors\Orsapi\Handlers\PassengerApiHandler;
+use Ors\Orsapi\Handlers\OrmApiHandler;
 
 class OrsapiServiceProvider extends ServiceProvider {
 
@@ -33,6 +34,7 @@ class OrsapiServiceProvider extends ServiceProvider {
 	{
 		$this->registerConnConfigApi();
 		$this->registerPassengerApi();
+		$this->registerOrmApi();
 	}
 
 	/**
@@ -41,7 +43,7 @@ class OrsapiServiceProvider extends ServiceProvider {
 	 * @return array
 	 */
 	public function provides() {
-		return array('orsapi.connconfig', 'orsapi.passenger');
+		return array('orsapi.connconfig', 'orsapi.passenger', 'orsapi.orm');
 	}
 	
 	/**
@@ -56,6 +58,7 @@ class OrsapiServiceProvider extends ServiceProvider {
 	    }
 		);
 	}
+	
 	/**
 	 * Register PassengerApiWrapper
 	 * @return \Ors\Orsapi\PassengerApiWrapper
@@ -65,6 +68,18 @@ class OrsapiServiceProvider extends ServiceProvider {
 		$this->app['orsapi.passenger'] = $this->app->share(function($app)
 	    {
 	        return new \Ors\Orsapi\PassengerApiWrapper(new PassengerApiHandler(Config::get('orsapi::passenger.agency_id'), Config::get('orsapi::passenger.master_key')));
+	    });
+	}
+	
+	/**
+	 * Register OrmApiWrapper
+	 * @return \Ors\Orsapi\OrmApiWrapper
+	 */
+	protected function registerOrmApi()
+	{
+		$this->app['orsapi.orm'] = $this->app->share(function($app)
+	    {
+	        return new \Ors\Orsapi\OrmApiWrapper(new OrmApiHandler());
 	    });
 	}
 

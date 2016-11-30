@@ -28,11 +28,5 @@ return array(
 	'test_user_id' => '',
 	'test_agency_id' => '',
 	'test_master_key' => '',
-		
-	/*
-	 * Auth user model (defaul: User).
-	 * Set other model name here, that handles User authentications.
-	 */
-	'auth_model' => 'User'
 );
 ?>

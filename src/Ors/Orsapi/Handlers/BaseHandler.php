@@ -32,7 +32,7 @@ abstract class BaseHandler {
 	
 	/**
 	 * API Response header information
-	 * @var \OAM\OAMHeader
+	 * @var \Ors\Orsapi\Oam\OAMHeader
 	 */
 	protected $api_header;
 	
@@ -50,7 +50,7 @@ abstract class BaseHandler {
 	
 	/**
 	 * Return API response header
-	 * @return \OAM\OAMHeader
+	 * @return \Ors\Orsapi\Oam\OAMHeader
 	 */
 	public function getApiHeader() { return $this->api_header; }
 
