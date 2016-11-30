@@ -1,6 +1,6 @@
 <?php namespace Ors\Orsapi\Oam;
 
-use Oss\Support\Common;
+use Ors\Support\Common;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
