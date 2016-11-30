@@ -1,5 +1,4 @@
-<?php 
-namespace ORM;
+<?php namespace Ors\Orsapi\Orm;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Database\Eloquent\Collection;
