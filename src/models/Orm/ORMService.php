@@ -1,10 +1,10 @@
 <?php 
 namespace ORM;
 
+use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Database\Eloquent\Collection;
-use Eloquent;
-use Common;
-use User;
+use Illuminate\Support\Facades\Config;
+use Ors\Support\Common;
 use Ors\Orsapi\Facades\PassengerApi;
 
 /**
@@ -49,8 +49,10 @@ class ORMService extends \OAM\OAMAvailabilityService {
 	 * 		data must be inside $attributes[userid]
 	 */
 	public function createUser($attributes) {
+		$auth_model = Config::get('orsapi::auth_model');
+		
 	    if (!empty($attributes['userid']))
-	        $this->user = User::find($attributes['userid']);
+	        $this->user = $auth_model::find($attributes['userid']);
 	    else
 	        $this->user = null;
 	}
