@@ -188,12 +188,12 @@ class ORM extends Eloquent {
 				    $attributes['toc'] = $this->operator->toc;
 				    
 				    $srv = $this->services->find($attributes['id']);
-				    $class = "ORM\ORMOffer_".strtolower($srv['typ']);
+				    $class = "Ors\Orsapi\Orm\ORMOffer_".strtolower($srv['typ']);
 				
 				    if (class_exists($class))
 				        $offer = new $class($attributes);
 				    else
-				        $offer = new \ORM\ORMOffer($attributes);
+				        $offer = new \Ors\Orsapi\Orm\ORMOffer($attributes);
 				    
 				    $this->offers->push($offer);
 				    $srv->offer = $offer;
