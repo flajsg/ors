@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Ors\Support\Common;
 use Ors\Support\SmartTab;
 use Ors\Orsapi\Facades\PassengerApi;
+use Ors\Orsapi\Facades\ReservationsApi;
 
 /**
  * ORM Class.
@@ -409,7 +410,7 @@ class ORM extends Eloquent {
 		$stab = new SmartTab('orm', $this->operator->bkc);
 		$stab->setIcon('glyphicons glyphicons-book')->setColorClass('bg-alert light')->setAction('search_load_mask_orm_bkc');
 		$stab->with('search_params', array('ibeid' => $this->login->ibeid));
-		$stab->with('filters', array(\ORS\API\OrsApi_bookings::makeSimpleFiltersGroup('bkc', array($this->operator->bkc)))); 
+		$stab->with('filters', ReservationsApi::makeSimpleFiltersGroup('bkc', array($this->operator->bkc))); 
 			
 		return $stab;
 	}

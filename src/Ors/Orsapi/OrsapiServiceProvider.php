@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Config;
 use Ors\Orsapi\Handlers\ConnConfigApiHandler;
 use Ors\Orsapi\Handlers\PassengerApiHandler;
 use Ors\Orsapi\Handlers\OrmApiHandler;
+use Ors\Orsapi\Handlers\ReservationsApiHandler;
 
 class OrsapiServiceProvider extends ServiceProvider {
 
@@ -35,6 +36,7 @@ class OrsapiServiceProvider extends ServiceProvider {
 		$this->registerConnConfigApi();
 		$this->registerPassengerApi();
 		$this->registerOrmApi();
+		$this->registerReservationsApi();
 	}
 
 	/**
@@ -43,7 +45,7 @@ class OrsapiServiceProvider extends ServiceProvider {
 	 * @return array
 	 */
 	public function provides() {
-		return array('orsapi.connconfig', 'orsapi.passenger', 'orsapi.orm');
+		return array('orsapi.connconfig', 'orsapi.passenger', 'orsapi.orm', 'orsapi.reservations');
 	}
 	
 	/**
@@ -80,6 +82,18 @@ class OrsapiServiceProvider extends ServiceProvider {
 		$this->app['orsapi.orm'] = $this->app->share(function($app)
 	    {
 	        return new \Ors\Orsapi\OrmApiWrapper(new OrmApiHandler());
+	    });
+	}
+	
+	/**
+	 * Register ReservationsApiWrapper
+	 * @return \Ors\Orsapi\ReservationsApiWrapper
+	 */
+	protected function registerReservationsApi()
+	{
+		$this->app['orsapi.reservations'] = $this->app->share(function($app)
+	    {
+	        return new \Ors\Orsapi\ReservationsApiWrapper(new ReservationsApiHandler());
 	    });
 	}
 
