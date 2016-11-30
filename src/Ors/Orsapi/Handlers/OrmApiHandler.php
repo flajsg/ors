@@ -126,6 +126,7 @@ class OrmApiHandler extends BaseHandler implements OrmApiInterface {
 	 */
 	public function setLogin($agid, $ibeid=0, $usr, $pass) {
 		$this->agid = $agid;
+		$this->ibeid = $ibeid;
 		$this->usr = $usr;
 		$this->pass = $pass;
 		return $this;
@@ -139,8 +140,9 @@ class OrmApiHandler extends BaseHandler implements OrmApiInterface {
 	 */
 	public function setAuthLogin($auth) {
 		$this->agid = $auth->agid;
-		$this->usr = $auth->usr;
+		$this->ibeid = $ibeid;
 		$this->master_key = $auth->master_key;
+		$this->usr = $auth->usr;
 		$this->pass = $auth->pass;
 		return $this;
 	}
