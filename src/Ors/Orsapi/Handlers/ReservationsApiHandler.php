@@ -11,6 +11,8 @@ use Ors\Orsapi\OrsApiException;
 use Ors\Orsapi\Interfaces\ReservationsApiInterface;
 use Ors\Orsapi\Oam\OAMHeader;
 use Ors\Orsapi\Orm\ORM;
+use Ors\Orsapi\Bookings\BookingHistory;
+use Ors\Orsapi\Bookings\BookingTotals;
 
 /**
  *
@@ -375,7 +377,7 @@ class ReservationsApiHandler extends BaseHandler implements ReservationsApiInter
 	    //Common::ppreDebug( $response['xmlReq'], 'xmlReq-raw');
 	    //Common::ppreDebug( $response, 'Response');
 	
-	    $totals = new \Bookings\BookingTotals(Common::_dashToUnderscore($response['totals']));
+	    $totals = new BookingTotals(Common::_dashToUnderscore($response['totals']));
 	    
 	    return $totals;
 	}
@@ -418,7 +420,7 @@ class ReservationsApiHandler extends BaseHandler implements ReservationsApiInter
 		$bookings = new Collection();
 		
 		foreach ($response['bookings'] as $booking)
-			$bookings->push(\Bookings\BookingHistory::withApiResponse($booking));
+			$bookings->push(BookingHistory::withApiResponse($booking));
 		 
 		return $bookings;
 	}
