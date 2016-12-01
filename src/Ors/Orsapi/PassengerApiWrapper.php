@@ -35,8 +35,8 @@ class PassengerApiWrapper extends OrsApiBase {
 	/**
 	 * @return \Ors\Orsapi\Handlers\PassengerApiHandler
 	 */
-	public function setAgencyKey($agency, $master_key) { 
-		return $this->handler()->setAgencyKey($agency, $master_key);
+	public function setAgencyKey($agency, $ibeid=0, $master_key) { 
+		return $this->handler()->setAgencyKey($agency, $ibeid, $master_key);
 	}
 
 	public function add($passenger) {

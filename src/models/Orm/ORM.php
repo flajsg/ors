@@ -394,7 +394,7 @@ class ORM extends Eloquent {
 		}
 		
 		if (!empty($this->user)) {
-			return PassengerApi::setAgencyKey($this->user->account_id, $this->user->account->orsapi_master_key)->find($this->customer)->OrmPerson;
+			return PassengerApi::setAgencyKey($this->user->account_id, '', $this->user->account->orsapi_master_key)->find($this->customer)->OrmPerson;
 		}
 		return null;
 	}
@@ -501,7 +501,7 @@ class ORM extends Eloquent {
 				if (!empty($psn->psnid)) $ids []= $psn->psnid;
 				
 			if ($ids) {
-				$passengers = PassengerApi::setAgencyKey($this->user->account_id, $this->user->account->orsapi_master_key)->findIds($ids);
+				$passengers = PassengerApi::setAgencyKey($this->user->account_id, '', $this->user->account->orsapi_master_key)->findIds($ids);
 			}
 			
 			$this->persons = $this->persons->map(function($psn, $key) use($passengers) {
