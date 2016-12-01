@@ -108,7 +108,7 @@ class ORMService extends \OAM\OAMAvailabilityService {
 		if (!empty($this->attributes['agn']) && $this->user) {
 		    $agn = array_filter( Common::extrim($this->attributes['agn']) );
 		    $find_persons = array_filter(array_unique($agn), function($a){return $a >= 1000;});
-		    $persons = PassengerApi::setAgencyKey($this->user->account_id, $this->user->account->orsapi_master_key)->findIds($find_persons);
+		    $persons = PassengerApi::setAgencyKey($this->user->account_id, '', $this->user->account->orsapi_master_key)->findIds($find_persons);
 		    return $persons;
 		}
 		else
