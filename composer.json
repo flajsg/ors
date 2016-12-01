@@ -11,6 +11,8 @@
     ],
     "require": {
         "php": ">=5.4.0",
+        "ext-soap": "*",
+        "ext-curl": "*",
         "illuminate/support": "4.2.*",
         "ors/support": "dev-master"
     },

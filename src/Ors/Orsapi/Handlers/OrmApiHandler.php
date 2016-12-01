@@ -35,36 +35,6 @@ class OrmApiHandler extends BaseHandler implements OrmApiInterface {
 	protected $response;
 	
 	/**
-	 * Agency id
-	 * @var int
-	 */
-	protected $agid;
-	
-	/**
-	 * Subacount id (branch office)
-	 * @var int
-	 */
-	protected $ibeid;
-	
-	/**
-	 * Agency master key (can be used without user/pass)
-	 * @var int
-	 */
-	protected $master_key;
-	
-	/**
-	 * API username (for use withour agency master key)
-	 * @var string
-	 */
-	protected $usr;
-	
-	/**
-	 * API password (for use withour agency master key)
-	 * @var string
-	 */
-	protected $pass;
-	
-	/**
 	 * Construct Soap client object and set api language
 	 * 
 	 * @param OAMAuth $auth
@@ -100,58 +70,10 @@ class OrmApiHandler extends BaseHandler implements OrmApiInterface {
 	}
 	
 	/**
-	 * Set agency id and master key (if you have one).
-	 * If you don't have master key, then use setLogin() method. 
-	 * 
-	 * @param int $agid
-	 * @param int $ibeid
-	 * @param string $master_key
-	 * @return \Ors\Orsapi\Handlers\OrmApiHandler
-	 */
-	public function setAgencyKey($agid, $ibeid=0, $master_key) {
-		$this->agid = $agid;
-		$this->ibeid = $ibeid;
-		$this->master_key = $master_key;
-		return $this;
-	}
-	
-	/**
-	 * Set api login credentials.
-	 * 
-	 * @param int $agid
-	 * @param int $ibeid
-	 * @param string $usr
-	 * @param string $pass
-	 * @return \Ors\Orsapi\Handlers\OrmApiHandler
-	 */
-	public function setLogin($agid, $ibeid=0, $usr, $pass) {
-		$this->agid = $agid;
-		$this->ibeid = $ibeid;
-		$this->usr = $usr;
-		$this->pass = $pass;
-		return $this;
-	}
-	
-	/**
-	 * Set api login credentials.
-	 *
-	 * @param OAMAuth $auth
-	 * @return \Ors\Orsapi\Handlers\OrmApiHandler
-	 */
-	public function setAuthLogin($auth) {
-		$this->agid = $auth->agid;
-		$this->ibeid = $auth->ibeid;
-		$this->master_key = $auth->master_key;
-		$this->usr = $auth->usr;
-		$this->pass = $auth->pass;
-		return $this;
-	}
-	
-	/**
 	 * Prepare SOAP header from search parameters
 	 * @param SmartSearchParameters $params
 	 */
-	protected function _makeHeader($params, $ctype_id = null) {
+	protected function _makeHeader($params) {
 	
 	    // get account info from ibeid (Currently only if TEST mode is enabled)
         $this->header['agid'] = $this->agid;

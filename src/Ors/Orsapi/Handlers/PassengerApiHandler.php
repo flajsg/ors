@@ -9,6 +9,7 @@ use Ors\Orsapi\OrsApiException;
 use Ors\Orsapi\Traits\JsonErrorHandlerTrait;
 use Ors\Support\Traits\CurlPost;
 use Ors\Orsapi\Orm\ORMPassenger;
+use Ors\Orsapi\Oam\OAMAuth;
 
 /**
  * This is ORS API Handler for Passenger API.
@@ -28,22 +29,14 @@ class PassengerApiHandler extends BaseHandler implements PassengerApiInterface {
 	private $api_url;
 	
 	/**
-	 * ORS Agency id
-	 * @var int
+	 * @param OAMAuth $auth
+	 * 		orm api auth. credentials
 	 */
-	private $agency;
-	
-	/**
-	 * Agency master key
-	 * @var string
-	 */
-	private $master_key;
-	
-	public function __construct($agency, $master_key){
+	public function __construct(OAMAuth $auth = null){
 	    $this->api_url = Config::get('orsapi::passenger.api_url');
-	    $this->agency = $agency;
-	    $this->master_key = $master_key;
 	    $this->setLang();
+	    
+	    if ($auth) $this->setAuthLogin($auth);
 	}
 	
 	/**
@@ -59,23 +52,11 @@ class PassengerApiHandler extends BaseHandler implements PassengerApiInterface {
 	}
 	
 	/**
-	 * Set other agency and master key values.
-	 * @param int $agency
-	 * @param string $master_key
-	 * @return \Ors\Orsapi\Handlers\PassengerApiHandler
-	 */
-	public function setAgencyKey($agency, $master_key) {
-		$this->agency = $agency;
-		$this->master_key = $master_key;
-		return $this;
-	}
-	
-	/**
 	 * Prepare API header info
 	 */
 	private function _makeHeader() {
 	    $this->header['lang'] = $this->getLang();
-	    $this->header['agency'] = $this->agency;
+	    $this->header['agency'] = $this->agid;
 	    $this->header['master-key'] = $this->master_key;
 	    $this->header['cip'] = Request::getClientIp();
 	}

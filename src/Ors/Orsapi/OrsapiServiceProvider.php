@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Config;
+use Ors\Orsapi\Oam\OAMAuth;
 use Ors\Orsapi\Handlers\ConnConfigApiHandler;
 use Ors\Orsapi\Handlers\PassengerApiHandler;
 use Ors\Orsapi\Handlers\OrmApiHandler;
@@ -69,7 +70,7 @@ class OrsapiServiceProvider extends ServiceProvider {
 	{
 		$this->app['orsapi.passenger'] = $this->app->share(function($app)
 	    {
-	        return new \Ors\Orsapi\PassengerApiWrapper(new PassengerApiHandler(Config::get('orsapi::passenger.agency_id'), Config::get('orsapi::passenger.master_key')));
+	        return new \Ors\Orsapi\PassengerApiWrapper(new PassengerApiHandler($this->getAuth()));
 	    });
 	}
 	
@@ -81,7 +82,7 @@ class OrsapiServiceProvider extends ServiceProvider {
 	{
 		$this->app['orsapi.orm'] = $this->app->share(function($app)
 	    {
-	        return new \Ors\Orsapi\OrmApiWrapper(new OrmApiHandler());
+	        return new \Ors\Orsapi\OrmApiWrapper(new OrmApiHandler($this->getAuth()));
 	    });
 	}
 	
@@ -93,8 +94,19 @@ class OrsapiServiceProvider extends ServiceProvider {
 	{
 		$this->app['orsapi.reservations'] = $this->app->share(function($app)
 	    {
-	        return new \Ors\Orsapi\ReservationsApiWrapper(new ReservationsApiHandler());
+	        return new \Ors\Orsapi\ReservationsApiWrapper(new ReservationsApiHandler($this->getAuth()));
 	    });
 	}
 
+	/**
+	 * Get basic API auth info.
+	 * @return \Ors\Orsapi\Oam\OAMAuth
+	 */
+	protected function getAuth() {
+		return new OAMAuth(array(
+    	    'agid' => Config::get('orsapi::agency_id'),
+    	    'ibeid' => '',
+    	    'master_key' => Config::get('orsapi::master_key')
+    	));
+	}
 }

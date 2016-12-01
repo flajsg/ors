@@ -47,7 +47,7 @@ class PassengerApiTest extends TestCase
 	}
 		
 	public function login() {
-		$this->user_id = Config::get('orsapi::passenger.test_user_id');
+		$this->user_id = Config::get('orsapi::test_user_id');
 		$auth_model = Config::get('orsapi::auth_model');
 		if (class_exists($auth_model))
 			$user = $auth_model::find($this->user_id);
@@ -56,8 +56,8 @@ class PassengerApiTest extends TestCase
 		$this->be($user);
 		
 		if (!$this->agency_id) {
-			$this->agency_id = Config::get('orsapi::passenger.test_agency_id');
-			$this->master_key = Config::get('orsapi::passenger.test_master_key');
+			$this->agency_id = Config::get('orsapi::test_agency_id');
+			$this->master_key = Config::get('orsapi::test_master_key');
 		}
 	}
 	
