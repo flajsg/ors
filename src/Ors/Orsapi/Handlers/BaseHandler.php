@@ -150,6 +150,16 @@ abstract class BaseHandler {
 	}
 	
 	/**
+	 * Set different ibeid
+	 * @param int $ibeid
+	 * @return \Ors\Orsapi\Handlers\BaseHandler
+	 */
+	public function setIbeid($ibeid) {
+		$this->ibeid = $ibeid;
+		return $this;
+	}
+	
+	/**
 	 * Set request id from Api response
 	 * @param mixed $response
 	 */
