@@ -15,7 +15,7 @@ class OAMAvailabilityOperator extends Eloquent {
      * @var array
      */
     protected $fillable = [
-    	'ctype_id', 'act', 'toc', 'hsc', 'agt', 'ibeid'
+    	'ctype_id', 'act', 'toc', 'hsc', 'agt', 'ibeid' ,'knd',
 	];
    
 }
