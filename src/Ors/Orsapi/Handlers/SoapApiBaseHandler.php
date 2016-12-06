@@ -104,6 +104,14 @@ class SoapApiBaseHandler extends BaseHandler {
 	}
 	
 	/**
+	 * Return used session id
+	 * @return string
+	 */
+	public function getSid() {
+		return $this->sid;
+	}
+	
+	/**
 	 * @see \ORS\Api\Handlers\OrsApiBaseHandler::setRqid()
 	 */
 	protected function setRqid($response) {
