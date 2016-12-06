@@ -45,7 +45,7 @@ class SearchApiWrapper extends OrsApiBase {
 	 * @param string $ctype_id
 	 * @return \Ors\Orsapi\SearchApiWrapper
 	 */
-	public function ctypeId($ctype_id) {
+	public function ctype($ctype_id) {
 		$this->ctype_id = $ctype_id;
 		return $this;
 	}
