@@ -45,7 +45,7 @@ class OAMAvailability extends Eloquent {
 	    
 	    
 	    // Offer model
-	    $offer_class = "OAM\OAMOffer_{$data['ctype_id']}"; 
+	    $offer_class = "Ors\Orsapi\Oam\OAMOffer_{$data['ctype_id']}"; 
 	    
 	    
 	    if (class_exists($offer_class))
@@ -54,7 +54,7 @@ class OAMAvailability extends Eloquent {
 	    	$instance->offer = new OAMOffer($data['offer']);
 	    
 	    // Object model
-	    $object_class = "OAM\OAMObject_{$data['ctype_id']}";
+	    $object_class = "Ors\Orsapi\Oam\OAMObject_{$data['ctype_id']}";
 	    if (class_exists($object_class))
 		    $instance->object = new $object_class($data['offer']);
 	    else
