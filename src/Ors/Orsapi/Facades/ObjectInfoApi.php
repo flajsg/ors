@@ -3,7 +3,7 @@ namespace Ors\Orsapi\Facades;
 
 use Illuminate\Support\Facades\Facade as BaseFacade;
 
-class ObjectInfo extends BaseFacade {
+class ObjectInfoApi extends BaseFacade {
 
     /**
      * Get the registered name of the component.
