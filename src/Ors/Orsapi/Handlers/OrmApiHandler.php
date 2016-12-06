@@ -1,7 +1,7 @@
 <?php namespace Ors\Orsapi\Handlers; 
 
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Config;
 use Ors\Orsapi\OrsApiException;
 use Ors\Orsapi\Interfaces\OrmApiInterface;
 use Ors\Orsapi\Oam\OAMHeader;
@@ -17,22 +17,7 @@ use SoapClient;
  * @author Gregor Flajs
  *
  */
-class OrmApiHandler extends BaseHandler implements OrmApiInterface {
-	
-	const ORSXML_SOAP_LOCATION = 'http://www.ors.si/orsxml-soap-api/orsxml_soap.php';
-	const ORSXML_SOAP_URI = 'http://www.ors.si/orsxml-soap-api';
-	
-	/**
-	 * Soap clien object
-	 * @var SoapClient
-	 */
-	protected $orsSoapClient;
-	
-	/**
-	 * ORS API Response array
-	 * @var array
-	 */
-	protected $response;
+class OrmApiHandler extends SoapApiBaseHandler implements OrmApiInterface {
 	
 	/**
 	 * Construct Soap client object and set api language
@@ -41,72 +26,9 @@ class OrmApiHandler extends BaseHandler implements OrmApiInterface {
 	 * 		orm api auth. credentials
 	 */
 	public function __construct(OAMAuth $auth = null){
+		parent::__construct($auth);
 		
-	    // api lang
-	    $this->setLang();
-	
-	    // soap client object
-	    $this->orsSoapClient = new SoapClient(null, array(
-	        'location' => self::ORSXML_SOAP_LOCATION,
-	        'uri'      => self::ORSXML_SOAP_URI,
-	        'trace'    => 1)
-	    );
-	    
-	    if ($auth) $this->setAuthLogin($auth);
-	}
-	
-	/**
-	 * @see \Ors\Orsapi\Handlers\BaseHandler::setRqid()
-	 */
-	protected function setRqid($response) {
-	    $this->rqid = $response['rqid'];
-	}
-	
-	/**
-	 * @see \Ors\Orsapi\Handlers\BaseHandler::setApiHeader()
-	 */
-	protected function setApiHeader($header) {
-	    $this->api_header = new OAMHeader($header);
-	}
-	
-	/**
-	 * Prepare SOAP header from search parameters
-	 * @param SmartSearchParameters $params
-	 */
-	protected function _makeHeader($params) {
-	
-	    // get account info from ibeid (Currently only if TEST mode is enabled)
-        $this->header['agid'] = $this->agid;
-        $this->header['ibeid'] = $this->ibeid;
-        $this->header['lang'] = $this->getLang();
-        	
-        // set login credentials
-        if ($this->master_key) $this->header['master_key'] = $this->master_key;
-        
-        if ($this->usr)  $this->header['usr'] = $this->usr;
-        if ($this->pass) $this->header['pass'] = $this->pass;
-	
-	    // set debup options (debug_opts)
-	    if (!empty($params->getCrsf('debug_opts')->value))
-	        $this->header['debug_opts'] = $params->getCrsf('debug_opts')->value;
-	    
-	    // client IP
-	    $this->header['cip'] = Request::getClientIp();
-	}
-	
-	/**
-	 * @see \Ors\Orsapi\Handlers\BaseHandler::_error()
-	 */
-	protected function _error($response) {
-	    if ( (isset($response['errorNr']) && $response['errorNr'] != '') || !empty($response['error'])) {
-	        $code = !is_numeric($response['errorNr']) ? 0 : $response['errorNr'];
-	        $rqid = !empty($response['rqid']) ? $response['rqid'] : '';
-	        $error = !empty($response['error']) ? $response['error'] : '';
-	        $this->setRqid(array('rqid' => $rqid));
-	        throw new OrsApiException($error, $code, null, $rqid);
-	    }
-	    if (empty($response) || $response == -1 || empty($response['xmlReq']) || empty($response['header']))
-	        throw new OrsApiException('No API response', 0, null, '');
+	    $this->_makeApiAuth(Config::get('orsapi::orm.api_url'));
 	}
 	
 	/**
@@ -136,11 +58,6 @@ class OrmApiHandler extends BaseHandler implements OrmApiInterface {
 	
 	    // debug header
 	    Common::ppreDebug( $this->header, 'header');
-	
-	    // ORM model
-	    //if (empty($response['admin']['login']['userid'])))
-	    //$response['admin']['login']['userid'] = $orm->userid;
-	    //$response['admin']['operator']['ibeid'] = $params->getCrsf('ibeid')->value;
 	
 	    $o_model = ORM::withApiResponse($response['admin']);
 	

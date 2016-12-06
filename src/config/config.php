@@ -31,10 +31,12 @@ return array(
 	 * TEST ENVIRONMENT VALUES (used for unit testing):
 	 * - test_user_id: test user id
 	 * - test_agency_id: test agency id
+	 * - test_ibeid: test ibeid (branch office or other ORS chanel)
 	 * - test_master_key: test agency master key
 	 */
 	'test_user_id' => '',
 	'test_agency_id' => '',
+	'test_ibeid' => '',
 	'test_master_key' => '',
 )
 ?>

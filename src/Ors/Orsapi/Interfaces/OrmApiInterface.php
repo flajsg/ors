@@ -1,7 +1,7 @@
 <?php namespace Ors\Orsapi\Interfaces;
 
 /**
- * Abstract class for orm ORS API calls.
+ * Interface for ORM API handlers.
  *
  * @author Gregor Flajs
  *
@@ -10,7 +10,7 @@ interface OrmApiInterface {
 	
 	/**
 	 * ORM call
-	 * @param \Ors\Support\SmartSearchParameters $params
+	 * @param \Ors\Support\CRSFieldInterface $params
 	 * 		parameters to create API header
 	 * @param \Ors\Orsapi\Orm\Orm $orm
 	 * 		orm object

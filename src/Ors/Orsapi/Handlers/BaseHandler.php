@@ -1,6 +1,8 @@
 <?php namespace Ors\Orsapi\Handlers;
 
 use Illuminate\Support\Facades\Lang;
+use Ors\Support\SmartSearchParameters;
+use Ors\Support\CRSFieldInterface;
 
 /**
  * Base ORS API Handler class.
@@ -160,6 +162,17 @@ abstract class BaseHandler {
 	}
 	
 	/**
+	 * Return instance of SmartSearchParameters.
+	 * Use this method if you want to make sure $params are an instance of CRSFieldInterface.
+	 *
+	 * @param array $params
+	 * @return \Ors\Support\SmartSearchParameters
+	 */
+	public static function toSmartParams($params) {
+	    return $params instanceof CRSFieldInterface ? $params : SmartSearchParameters::withArray($params);
+	}
+	
+	/**
 	 * Set request id from Api response
 	 * @param mixed $response
 	 */
@@ -168,13 +181,13 @@ abstract class BaseHandler {
 	/**
 	 * Use this method to set OAM api response header after request is made.
 	 * This can only be called inside request methods. 
-	 * Use getApiHEader() method to return results. 
+	 * Use getApiHeader() method to return results. 
 	 * @param mixed $response
 	 */
 	abstract protected function setApiHeader($response);
 	
 	/**
-	 * From Api response checks if there was an error and thwors OrsApiException.
+	 * From Api response checks if there was an error and throw OrsApiException.
 	 * @param mixed $response
 	 * 		ors api response
 	 * @throws \Ors\Orsapi\OrsApiException

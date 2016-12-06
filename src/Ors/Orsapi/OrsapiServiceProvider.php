@@ -7,6 +7,9 @@ use Ors\Orsapi\Handlers\ConnConfigApiHandler;
 use Ors\Orsapi\Handlers\PassengerApiHandler;
 use Ors\Orsapi\Handlers\OrmApiHandler;
 use Ors\Orsapi\Handlers\ReservationsApiHandler;
+use Ors\Orsapi\Handlers\SearchApiHandler;
+use Ors\Orsapi\Handlers\ObjectInfoHandler;
+use Ors\Orsapi\Handlers\FlightInfoHandler;
 
 class OrsapiServiceProvider extends ServiceProvider {
 
@@ -38,6 +41,7 @@ class OrsapiServiceProvider extends ServiceProvider {
 		$this->registerPassengerApi();
 		$this->registerOrmApi();
 		$this->registerReservationsApi();
+		$this->registerSearchApi();
 	}
 
 	/**
@@ -46,7 +50,19 @@ class OrsapiServiceProvider extends ServiceProvider {
 	 * @return array
 	 */
 	public function provides() {
-		return array('orsapi.connconfig', 'orsapi.passenger', 'orsapi.orm', 'orsapi.reservations');
+		return array(
+			'orsapi.connconfig', 
+			'orsapi.passenger', 
+			'orsapi.orm', 
+			'orsapi.reservations', 
+			'orsapi.search',
+			'orsapi.typhotel',
+			'orsapi.typdhotel',
+			'orsapi.typpauschal',
+			'orsapi.typtrips',
+			'orsapi.objectinfo',
+			'orsapi.flightinfo',
+		);
 	}
 	
 	/**
@@ -95,6 +111,43 @@ class OrsapiServiceProvider extends ServiceProvider {
 		$this->app['orsapi.reservations'] = $this->app->share(function($app)
 	    {
 	        return new \Ors\Orsapi\ReservationsApiWrapper(new ReservationsApiHandler($this->getAuth()));
+	    });
+	}
+
+	/**
+	 * Register SearchApiWrapper
+	 * @return \Ors\Orsapi\SearchApiWrapper
+	 */
+	protected function registerSearchApi()
+	{
+		$this->app['orsapi.search'] = $this->app->share(function($app)
+	    {
+	        return new \Ors\Orsapi\SearchApiWrapper(new SearchApiHandler($this->getAuth()));
+	    });
+		
+		$this->app['orsapi.typhotel'] = $this->app->share(function($app)
+	    {
+	        return new \Ors\Orsapi\TypHotelApiWrapper(new SearchApiHandler($this->getAuth()));
+	    });
+		$this->app['orsapi.typdhotel'] = $this->app->share(function($app)
+	    {
+	        return new \Ors\Orsapi\TypDhotelApiWrapper(new SearchApiHandler($this->getAuth()));
+	    });
+		$this->app['orsapi.typpauschal'] = $this->app->share(function($app)
+	    {
+	        return new \Ors\Orsapi\TypPauschalApiWrapper(new SearchApiHandler($this->getAuth()));
+	    });
+		$this->app['orsapi.typtrips'] = $this->app->share(function($app)
+	    {
+	        return new \Ors\Orsapi\TypTripsApiWrapper(new SearchApiHandler($this->getAuth()));
+	    });
+		$this->app['orsapi.objectinfo'] = $this->app->share(function($app)
+	    {
+	        return new \Ors\Orsapi\ObjectInfoApiWrapper(new ObjectInfoApiHandler($this->getAuth()));
+	    });
+		$this->app['orsapi.flightinfo'] = $this->app->share(function($app)
+	    {
+	        return new \Ors\Orsapi\FlightInfoApiWrapper(new FlightInfoHandler($this->getAuth()));
 	    });
 	}
 

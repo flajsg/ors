@@ -17,10 +17,4 @@ class OAMHeader extends Eloquent {
     protected $fillable = [
     	'typ', 'offers', 'pages', 'perpage', 'offset', 'sid', 'rqid'
 	];
-
-    /**
-     * Primary key
-     * @var string
-     */
-    protected $primaryKey = 'typ';
 }

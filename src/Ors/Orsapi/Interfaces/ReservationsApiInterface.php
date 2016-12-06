@@ -2,7 +2,7 @@
 
 
 /**
- * Abstract class for basic ORS API calls.
+ * Interface for Reservations API handlers.
  *  
  * @author Gregor Flajs
  *
@@ -12,7 +12,7 @@ interface ReservationsApiInterface {
 	/**
 	 * Return bookings
 	 *
-	 * @param SmartSearchParameters $params
+	 * @param \Ors\Orsapi\Support\CRSFieldInterface $params
 	 * @param array $filters
 	 * @param array $search
 	 * 		common search options array('op')
@@ -26,7 +26,7 @@ interface ReservationsApiInterface {
 	 * This request returns some statistics of bookings.
 	 * Like total number of bookings, total price, persons, services, ....
 	 *
-	 * @param SmartSearchParameters $params
+	 * @param \Ors\Orsapi\Support\CRSFieldInterface $params
 	 * @param array $filters
 	 * @param array $search
 	 * 		common search options array('op')
@@ -37,7 +37,7 @@ interface ReservationsApiInterface {
 	/**
 	 * Return booking history (for one or more bookings at once).
 	 *
-	 * @param SmartSearchParameters $params
+	 * @param \Ors\Orsapi\Support\CRSFieldInterface $params
 	 * @param array $bookings
 	 * 		a list of booking ids to get history for
 	 * @return Collection|\Bookings\BookingHistory[]
@@ -50,7 +50,7 @@ interface ReservationsApiInterface {
 	 * This api uses same search query as "search" method to find bookings
 	 * for wish to want to change the owner. 
 	 *
-	 * @param SmartSearchParameters $params
+	 * @param \Ors\Orsapi\Support\CRSFieldInterface $params
 	 * @param int $owner
 	 * 		new owner user id (new agent)
 	 * @param array $filters

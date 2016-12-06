@@ -12,13 +12,13 @@ class OrsApiBase {
 	
 	/**
 	 * Ors Api Handler
-	 * @var \Ors\Orsap\Handlers\BaseHandler
+	 * @var \Ors\Orsapi\Handlers\BaseHandler
 	 */
 	protected $oa_handler;
 	
 	/**
 	 * Instance contructor
-	 * @param \Ors\Orsap\Handlers\BaseHandler $oa_handler
+	 * @param \Ors\Orsapi\Handlers\BaseHandler $oa_handler
 	 */
 	public function __construct($oa_handler) {
 		$this->oa_handler = $oa_handler;
@@ -26,7 +26,7 @@ class OrsApiBase {
 	
 	/**
 	 * Ors Api Handler object
-	 * @return \Ors\Orsap\Handlers\BaseHandler
+	 * @return \Ors\Orsapi\Handlers\BaseHandler
 	 */
 	public function handler() {
 		return $this->oa_handler;
@@ -34,7 +34,7 @@ class OrsApiBase {
 	
 	/**
 	 * Return API response header
-	 * @return \OAM\OAMHeader
+	 * @return \Ors\Orsapi\Oam\OAMHeader
 	 */
 	public function header() {
 		return $this->handler()->getApiHeader();
@@ -42,7 +42,7 @@ class OrsApiBase {
 	
 	/**
 	 * Set different api handler
-	 * @param \Ors\Orsap\Handlers\BaseHandler $oa_handler
+	 * @param \Ors\Orsapi\Handlers\BaseHandler $oa_handler
 	 */
 	public function setHandler($oa_handler) {
 		$this->oa_handler = $oa_handler;
