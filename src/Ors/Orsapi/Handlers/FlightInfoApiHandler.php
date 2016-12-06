@@ -1,5 +1,6 @@
 <?php namespace Ors\Orsapi\Handlers;
 
+use Illuminate\Database\Eloquent\Collection;
 use Ors\Orsapi\Interfaces\FlightInfoApiInterface;
 use Ors\Orsapi\Interfaces\ITAG_SearchApiInterface;
 use Ors\Orsapi\Oam\OAMFlightInfo;
