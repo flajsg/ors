@@ -5,7 +5,7 @@
  *  
  * @author Gregor Flajs
  */
-interface FlightInfoInterface {
+interface FlightInfoApiInterface {
 	
 	/**
 	 * FlightInfo check

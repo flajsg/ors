@@ -1,13 +1,13 @@
 <?php namespace Ors\Orsapi\Handlers;
 
-use Ors\Orsapi\Interfaces\FlightInfoInterface;
+use Ors\Orsapi\Interfaces\FlightInfoApiInterface;
 use Ors\Orsapi\Interfaces\ITAG_SearchApiInterface;
 use Ors\Orsapi\Oam\OAMFlightInfo;
 use Ors\Orsapi\Oam\OAMFlightInfoTime;
 use Ors\Orsapi\Oam\OAMFlightInfoResponse;
 use Ors\Support\Common;
 
-class FlightInfoHandler extends SoapApiBaseHandler implements ITAG_SearchApiInterface, FlightInfoInterface {
+class FlightInfoApiHandler extends SoapApiBaseHandler implements ITAG_SearchApiInterface, FlightInfoApiInterface {
 	
 	/**
 	 * @see \Ors\Orsapi\Interfaces\FlightInfoInterface::flightInfo()

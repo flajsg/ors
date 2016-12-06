@@ -1,6 +1,6 @@
 <?php namespace Ors\Orsapi\Handlers;
 
-use Ors\Orsapi\Interfaces\ObjectInfoInterface;
+use Ors\Orsapi\Interfaces\ObjectInfoApiInterface;
 use Ors\Orsapi\Interfaces\ITAG_SearchApiInterface;
 use Ors\Orsapi\Oam\OAMObjectInfo;
 use Ors\Orsapi\Oam\OAMGeo;
@@ -13,7 +13,7 @@ use Ors\Orsapi\Oam\OAMMultiFactItem;
 use Ors\Orsapi\OrsApiException;
 use Ors\Support\Common;
 
-class ObjectInfoHandler extends SoapApiBaseHandler implements ITAG_SearchApiInterface, ObjectInfoInterface {
+class ObjectInfoApiHandler extends SoapApiBaseHandler implements ITAG_SearchApiInterface, ObjectInfoApiInterface {
 	
 	/**
 	 * @see \Ors\Orsapi\Interfaces\SearchApiInterface::info()

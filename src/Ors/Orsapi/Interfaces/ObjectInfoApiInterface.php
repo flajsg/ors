@@ -5,7 +5,7 @@
  *  
  * @author Gregor Flajs
  */
-interface ObjectInfoInterface {
+interface ObjectInfoApiInterface {
 
 	/**
 	 * Return Object info

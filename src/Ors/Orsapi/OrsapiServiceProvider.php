@@ -8,8 +8,8 @@ use Ors\Orsapi\Handlers\PassengerApiHandler;
 use Ors\Orsapi\Handlers\OrmApiHandler;
 use Ors\Orsapi\Handlers\ReservationsApiHandler;
 use Ors\Orsapi\Handlers\SearchApiHandler;
-use Ors\Orsapi\Handlers\ObjectInfoHandler;
-use Ors\Orsapi\Handlers\FlightInfoHandler;
+use Ors\Orsapi\Handlers\ObjectInfoApiHandler;
+use Ors\Orsapi\Handlers\FlightInfoApiHandler;
 
 class OrsapiServiceProvider extends ServiceProvider {
 
@@ -147,7 +147,7 @@ class OrsapiServiceProvider extends ServiceProvider {
 	    });
 		$this->app['orsapi.flightinfo'] = $this->app->share(function($app)
 	    {
-	        return new \Ors\Orsapi\FlightInfoApiWrapper(new FlightInfoHandler($this->getAuth()));
+	        return new \Ors\Orsapi\FlightInfoApiWrapper(new FlightInfoApiHandler($this->getAuth()));
 	    });
 	}
 
