@@ -85,6 +85,12 @@ abstract class BaseHandler {
 	 * @return \Ors\Orsapi\Oam\OAMHeader
 	 */
 	public function getApiHeader() { return $this->api_header; }
+	
+	/**
+	 * Return API request header
+	 * @return array
+	 */
+	public function getRequestHeader() { return $this->header; }
 
 	/**
 	 * Set API lang. 
