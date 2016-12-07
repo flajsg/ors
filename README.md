@@ -63,7 +63,7 @@ Object info (description, images, characteristics, weather, ratings):
 	
 	$info = ObjectInfoApi::infoToc($params);
 	
-Set API ahthorisation:
+Set API authorisation:
 
 	$auth = new \Ors\Orsapi\Oam\OAMAuth(array(
 		'agid' => XXXX, 
