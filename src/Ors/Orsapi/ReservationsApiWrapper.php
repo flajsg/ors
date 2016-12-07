@@ -71,9 +71,9 @@ class ReservationsApiWrapper extends OrsApiBase {
 	 * Example of filter structure:
 	 * <code>
 	 * 		array([
-	 *   		'@attributes' => array('op' => '='),
+	 *   		'@attributes' => array('op' => 'is'),
 	 *   		'field' => [
-	 *   			array('@attributes' => array(name, ope, value))
+	 *   			array('@attributes' => array(name, operator, value))
 	 *   		]
 	 *   	]);
 	 * </code>
@@ -88,19 +88,18 @@ class ReservationsApiWrapper extends OrsApiBase {
 	 *		a single group with filters is returned
 	 */
 	public function makeSimpleFiltersGroup($name, $values ,$op = 'AND') {
-	    $group = array([
+	    $group = array(0 => [
 	        '@attributes' => array('op' => $op),
 	        'field' => array()
 	    ]);
 	
 	    foreach ($values as $value) {
-	        //$group ['field'] []= array('id' => $name, 'value' => $value, 'operator' => '=', 'check' => true);
 	    	$field 	= array('@attributes' => array(
 	    	    'name' => $name,
-	    	    'op' => '=',
+	    	    'op' => 'is',
 	    	    'value' =>  $value
 	    	));
-	    	$group['field'][]=$field;
+	    	$group[0]['field'][]=$field;
 	    }
 	    return $group;
 	}

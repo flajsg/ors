@@ -26,56 +26,6 @@ use Ors\Orsapi\Oam\OAMAuth;
 class ReservationsApiHandler extends SoapApiBaseHandler implements ReservationsApiInterface {
 
 	/**
-	 * Mapping our filter names to API filter names
-	 * @var array
-	 */
-	private $filters_map = array(
-		'status' => 'status',
-		'gid' => 'gid',
-		'htn' => 'obj_name',
-		'hon' => 'obj_city',
-		'rgn' => 'obj_region',
-		'vnd' => 'start',
-		'bsd' => 'end',
-		'prc' => 'remote_book_id',
-		'bkc' => 'book_id',
-		'toc' => 'toc',
-		'user_id' => 'booker_id',
-		'booker' => 'booker',
-		'booked_at' => 'book_date',
-		'price' => 'price',
-		'account_id' => 'agid',
-		'ibeid' => 'ibeid',
-		'typ' => 'type',
-		'psn_name' => 'passenger_name',
-		'psn_email' => 'passenger_email',
-		'dirty' => 'dirty',
-	);
-	
-	/**
-	 * Mapping our operators to API operators
-	 * @var array
-	 */
-	private $operators_map = array(
-		'=' => 'is',
-		'!=' => 'is not',
-		'date<' => 'before',
-		'date>' => 'after',
-		'date>=' => 'after or at',
-		'date<=' => 'before or at',
-		'<' => 'lower',
-		'>' => 'greater',
-		'>=' => 'greater or equal',
-		'<=' => 'lower or equal',
-		'like' => 'like',
-		'!like' => 'not like',
-		'like%' => 'starts with',
-		'!like%' => 'not starts with',
-		'%like' => 'ends with',
-		'!%like' => 'not ends with',
-	);
-
-	/**
 	 * Start attribute for Limits
 	 * @var int
 	 */

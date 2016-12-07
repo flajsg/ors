@@ -29,7 +29,7 @@ And make sure you've added aliases in 'aliases' array:
 
 You will need some custom configurations so make sure you have published config files:
 
-	php artisan config:publish ors/orsapi
+	php artisan config:publish ors/orsapi:dev-master
 
 ## Basic Usage
 
