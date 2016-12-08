@@ -130,7 +130,7 @@ class OAMObject_hotel extends OAMObject {
 	    $icons = new Collection();
 	     
 	    foreach ($this->facts as $f) {
-	        if (!empty($f->icon))
+	        if (!empty($f->icon->icon))
 	            $icons->push($f->icon);
 	    }
 	    return $icons->unique();

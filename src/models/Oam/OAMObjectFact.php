@@ -19,7 +19,7 @@ class OAMObjecFact extends OAMObjectContent {
 	public function getIconAttribute() {
 		if (empty($this->attributes['status']))
 			return null;
-		return Common::factIcon($this->attributes['code']);
+		return OAMInfo::withCode($this->attributes['code']);
 	}
     
 	public function toArray() {
