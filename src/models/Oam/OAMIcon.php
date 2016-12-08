@@ -19,17 +19,17 @@ class OAMIcon extends Eloquent {
 	public static function withCode($code) {
 		switch ($code) {
 			case 'air':
-			    return new self(array('icon' => 'glyphicons glyphicons-snowflake'));
+			    return new self(array('icon' => 'glyphicons glyphicons-snowflake', 'name' => $code));
 			case 'wifi':
-			    return new self(array('icon' => 'glyphicons glyphicons-wifi'));
+			    return new self(array('icon' => 'glyphicons glyphicons-wifi', 'name' => $code));
 			case 'bea':
 			case 'ben':
-			    return new self(array('icon' => 'glyphicons glyphicons-beach_umbrella'));
+			    return new self(array('icon' => 'glyphicons glyphicons-beach_umbrella', 'name' => $code));
 			case 'pol':
 			case 'ipl':
-			    return new self(array('icon' => 'glyphicons glyphicons-pool'));
+			    return new self(array('icon' => 'glyphicons glyphicons-pool', 'name' => $code));
 			case 'whc':
-			    return new self(array('icon' => 'fa fa-wheelchair'));
+			    return new self(array('icon' => 'fa fa-wheelchair', 'name' => $code));
 			case 'spt':
 			case 'sws':
 			case 'shb':
@@ -40,7 +40,7 @@ class OAMIcon extends Eloquent {
 			case 'stn':
 			case 'sdv':
 			case 'sth':
-			    return new self(array('icon' => 'glyphicons glyphicons-soccer_ball'));
+			    return new self(array('icon' => 'glyphicons glyphicons-soccer_ball', 'name' => $code));
 			case 'spa':
 			case 'wel':
 			case 'wms':
@@ -53,16 +53,16 @@ class OAMIcon extends Eloquent {
 			case 'wbf':
 			case 'wac':
 			case 'wap':
-			    return new self(array('icon' => 'glyphicons glyphicons-heart_empty'));
+			    return new self(array('icon' => 'glyphicons glyphicons-heart_empty', 'name' => $code));
 			case 'pet':
-			    return new self(array('icon' => 'glyphicons glyphicons-dog'));
+			    return new self(array('icon' => 'glyphicons glyphicons-dog', 'name' => $code));
 			case 'park':
-			    return new self(array('icon' => 'glyphicons glyphicons-car'));
+			    return new self(array('icon' => 'glyphicons glyphicons-car', 'name' => $code));
 			case 'chf':
-			    return new self(array('icon' => 'fa fa-smile-o'));
+			    return new self(array('icon' => 'fa fa-smile-o', 'name' => $code));
 		
 			default:
-			    return new self(array('icon' => ''));
+			    return new self(array('icon' => '', 'name' => $code));
 		}
 	}
 	
