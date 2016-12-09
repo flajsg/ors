@@ -14,7 +14,7 @@
         "ext-soap": "*",
         "ext-curl": "*",
         "illuminate/support": "4.2.*",
-        "ors/support": "dev*"
+        "ors/support": "dev-master"
     },
     "autoload": {
         "classmap": [
