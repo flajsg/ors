@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Config;
 use Ors\Support\Common;
 use Ors\Orsapi\Facades\PassengerApi;
+use Ors\Orsapi\Oam\OAMAvailabilityService;
 
 /**
  * ORM Service class (for service lines)
@@ -12,7 +13,7 @@ use Ors\Orsapi\Facades\PassengerApi;
  * @author Gregor Flajs
  *
  */
-class ORMService extends \OAM\OAMAvailabilityService {
+class ORMService extends OAMAvailabilityService {
 	
 	protected $fillable = ['id', 'mrk', 'typ', 'cod', 'opt', 'op2', 'alc', 'cnt', 'vnd', 'bsd', 'agn', 'sst', 'scp', 'userid'];
 	
