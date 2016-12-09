@@ -236,8 +236,8 @@ class ORM extends Eloquent {
 	    	if (empty($attributes['operator']['psn']))
 	    		$attributes['operator']['psn'] = $this->persons->count();
 	    	
-	    	if (empty($attributes['operator']['bst']) && !empty($attributes['hsc']))
-	    		$attributes['operator']['bst'] = $attributes['hsc'];
+	    	//if (empty($attributes['operator']['bst']) && !empty($attributes['hsc']))
+	    	//	$attributes['operator']['bst'] = $attributes['hsc'];
 	    	
 	    	if (empty($attributes['operator']['act']) && !empty($attributes['act']))
 	    		$attributes['operator']['act'] = $attributes['act'];
