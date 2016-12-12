@@ -77,10 +77,10 @@ class ORM extends Eloquent {
 		parent::__construct($attributes);
 		
 		$this->createLogin($attributes);
-		$this->createServices($attributes);
 		$this->createPersons($attributes);
 		$this->createOperator($attributes);
 		$this->createResponse($attributes);
+		$this->createServices($attributes);
 		$this->createOffers($attributes);
 	}
 	
@@ -163,6 +163,7 @@ class ORM extends Eloquent {
 			foreach ($attributes['services'] as $srv)
 				if (!empty($srv)) {
 					$srv = !empty($srv['@attributes']) ? $srv['@attributes'] : $srv;
+					$srv['toc'] = $this->operator->toc;
 					$this->services->push(new ORMService($srv+array('userid' => $this->user->id)));
 				}
 		}
