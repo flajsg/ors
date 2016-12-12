@@ -15,7 +15,7 @@ use Ors\Orsapi\Oam\OAMAvailabilityService;
  */
 class ORMService extends OAMAvailabilityService {
 	
-	protected $fillable = ['id', 'mrk', 'typ', 'cod', 'opt', 'op2', 'alc', 'cnt', 'vnd', 'bsd', 'agn', 'sst', 'scp', 'userid'];
+	protected $fillable = ['id', 'mrk', 'typ', 'cod', 'opt', 'op2', 'alc', 'cnt', 'vnd', 'bsd', 'agn', 'sst', 'scp', 'userid', 'toc'];
 	
 	protected $primaryKey = 'id';
 	
@@ -84,6 +84,29 @@ class ORMService extends OAMAvailabilityService {
 			$out .= $this->bsd_human;
 		 
 		return $out;	
+	}
+	
+	/**
+	 * Details Attribute.
+	 * This returns service details in a string
+	 * @return string
+	 */
+	public function getDetailsAttribute() {
+		$out = array();
+		$details = array();
+
+		if ($this->attributes['vnd'] && $this->attributes['bsd'])
+		    $out []= sprintf("%s - %s", Common::date($this->attributes['vnd']), Common::date($this->attributes['bsd']));
+		
+		if ($this->attributes['toc']) $details[]= $this->attributes['toc'];
+		if ($this->attributes['typ']) $details[]= $this->attributes['typ'];
+		if ($this->attributes['cod']) $details[]= $this->attributes['cod'];
+		if ($this->attributes['opt']) $details[]= $this->attributes['opt'];
+		
+		if ($details)
+		    $out []= implode(' | ', $details);
+		
+		return implode('<br>', $out);
 	}
 	
 	/**
