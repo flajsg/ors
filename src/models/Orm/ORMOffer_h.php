@@ -77,27 +77,30 @@ class ORMOffer_h extends ORMOffer {
 		
 		$details = array();
 		
-		if ($this->attributes['toc']) 
+		// Show toc only if zac and vpc is also available. 
+		// This is so that details is empty if there is no info about zac/vpc and we can use service->details instead.
+		if ($this->attributes['toc'] && $this->attributes['zac'] && $this->attributes['vpc']) { 
 			$details[]=sprintf("<span >%s</span>", $this->attributes['toc']);
 		
-		if ($this->attributes['zac']) 
-			$details[]=sprintf("<span title='%s'>%s</span>", 
-				$this->attributes['zan']
-			    . (!empty($this->attributes['ztx']) ? ', '.$this->attributes['ztx'] : '')
-			    . (!empty($this->attributes['ltx']) ? ', '.$this->attributes['ltx'] : '')
-			    . (!empty($this->attributes['atx']) ? ', '.$this->attributes['atx'] : ''),
-			    $this->attributes['zac']
-			);
-		
-		if ($this->attributes['vpc'])
-			$details[]=sprintf("<span title='%s'>%s</span>",
-				$this->attributes['vpn']
-				. (!empty($this->attributes['itx']) ? ', '.$this->attributes['itx'] : ''),
-				$this->attributes['vpc']
-			);
-		
-		if ($details)
-			$out []= implode(' | ', $details);
+			if ($this->attributes['zac']) 
+				$details[]=sprintf("<span title='%s'>%s</span>", 
+					$this->attributes['zan']
+				    . (!empty($this->attributes['ztx']) ? ', '.$this->attributes['ztx'] : '')
+				    . (!empty($this->attributes['ltx']) ? ', '.$this->attributes['ltx'] : '')
+				    . (!empty($this->attributes['atx']) ? ', '.$this->attributes['atx'] : ''),
+				    $this->attributes['zac']
+				);
+			
+			if ($this->attributes['vpc'])
+				$details[]=sprintf("<span title='%s'>%s</span>",
+					$this->attributes['vpn']
+					. (!empty($this->attributes['itx']) ? ', '.$this->attributes['itx'] : ''),
+					$this->attributes['vpc']
+				);
+			
+			if ($details)
+				$out []= implode(' | ', $details);
+		}
 		
 		return implode('<br>', $out);
 	}
