@@ -87,7 +87,7 @@ class ReservationsApiHandler extends SoapApiBaseHandler implements ReservationsA
 	 * @see \Ors\Orsapi\Interfaces\ReservationsApiInterface::search()
 	 */
 	public function search($params, $filters, $search = array()) {
-	
+		$params = $this->toSmartParams($params);
 	    $this->_makeHeader($params);
 	
 	    $search = array(
@@ -99,8 +99,8 @@ class ReservationsApiHandler extends SoapApiBaseHandler implements ReservationsA
 	    if (!empty($filters)) $search['search']['group'] = $filters;
 	    
 	    // add sorts
-	    if ($params->getCrsf('sort')->value) {
-	    	list($col, $dir) = explode('|', $params->getCrsf('sort')->value);
+	    if ($params->find('sort')->value) {
+	    	list($col, $dir) = explode('|', $params->find('sort')->value);
 	    	$search['sort']['item'] = array('@attributes' => array('name' => $col, 'order' => $dir));
 	    }
 	    
@@ -147,7 +147,7 @@ class ReservationsApiHandler extends SoapApiBaseHandler implements ReservationsA
 	 * @see \Ors\Orsapi\Interfaces\ReservationsApiInterface::totals()
 	 */
 	public function totals($params, $filters, $search = array()) {
-	
+		$params = $this->toSmartParams($params);
 	    $this->_makeHeader($params);
 	
 	    $search = array(
@@ -191,6 +191,7 @@ class ReservationsApiHandler extends SoapApiBaseHandler implements ReservationsA
 	 * @see \Ors\Orsapi\Interfaces\ReservationsApiInterface::history()
 	 */
 	public function history($params, $bookings) {
+		$params = $this->toSmartParams($params);
 		$this->_makeHeader($params);
 		
 		$search = array('booking' => array());
@@ -234,7 +235,7 @@ class ReservationsApiHandler extends SoapApiBaseHandler implements ReservationsA
 	 * @see \Ors\Orsapi\Interfaces\ReservationsApiInterface::chown()
 	 */
 	public function chown($params, $owner, $filters, $search = array()){
-
+		$params = $this->toSmartParams($params);
 		$this->_makeHeader($params);
 		
 		$search = array(
