@@ -33,6 +33,11 @@ You will need some custom configurations so make sure you have published config 
 
 ## Basic Usage
 
+Set API authorisation:
+	
+	$handler = TypHotelApi::setLogin($agid, $ibeid, $usr, $pass);
+
+
 A list of available ORS API connections:
 
 	$connections = ConnConfig::listConnections()
@@ -72,4 +77,15 @@ Set API authorisation:
 	));
 	
 	$regions = TypHotelApi::setAuthLogin($auth)->regions($params);
+	
+Search for reservations by booking id:
+
+	$filters = array([
+		'@attributes' => ['op' => 'AND'],
+			'fields' => [
+				array('@attributes' => array('name' => 'book_id', 'op' => 'is', 'value' => 3342))			
+		]
+	]);
+	
+	$bookings = ReservationsApi::search(array('ibeid' => 62), $filters);
 	
