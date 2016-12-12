@@ -15,15 +15,24 @@ class OAMInfoPicture extends Eloquent {
      * @var array
      */
     protected $fillable = [
-    	'code', 'name', 'url', 'url_big'
+    	'code', 'name', 'url', 'url_big', 'url_thumb'
 	];
 
     /**
      * UrlBig attribute.
-     * If big picture url exist then url_big is returned, othervise url attribute is returned.
+     * If big picture url exist then url_big is returned, otherwise url attribute is returned.
      * @return string
      */
     public function getUrlBigAttribute() {
     	return !empty($this->attributes['url_big']) ? $this->attributes['url_big'] : $this->attributes['url'];
+    }
+    
+    /**
+     * UrlThumb attribute.
+     * If thumb picture url exist then url_thumb is returned, otherwise url attribute is returned.
+     * @return string
+     */
+    public function getUrlThumbAttribute() {
+    	return !empty($this->attributes['url_thumb']) ? $this->attributes['url_thumb'] : $this->attributes['url'];
     }
 }
