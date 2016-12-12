@@ -68,18 +68,36 @@ class ORMOffer_h extends ORMOffer {
 	 */
 	public function getDetailsAttribute() {
 		$out = array();
-		$out []= sprintf("%s - %s (%s)", Common::date($this->attributes['vnd']), Common::date($this->attributes['bsd']), $this->attributes['tdc']);
-		$out []= sprintf("<small><span >%s</span> | <span title='%s'>%s</span> | <span title='%s'>%s</span></small>",
-		    $this->attributes['toc'],
-		    $this->attributes['zan']
-		    . (!empty($this->attributes['ztx']) ? ', '.$this->attributes['ztx'] : '')
-		    . (!empty($this->attributes['ltx']) ? ', '.$this->attributes['ltx'] : '')
-		    . (!empty($this->attributes['atx']) ? ', '.$this->attributes['atx'] : ''),
-		    $this->attributes['zac']
-		    . (!empty($this->attributes['itx']) ? ', '.$this->attributes['itx'] : ''),
-		    $this->attributes['vpn'],
-		    $this->attributes['vpc']
-		);
+		
+		if ($this->attributes['vnd'] && $this->attributes['bsd']) {
+			$date = sprintf("%s - %s", Common::date($this->attributes['vnd']), Common::date($this->attributes['bsd']));
+			if ( $this->attributes['tdc']) $date .= sprintf(" (%s)", $this->attributes['tdc']);
+			$out []= $date;
+		}
+		
+		$details = array();
+		
+		if ($this->attributes['toc']) 
+			$details[]=sprintf("<span >%s</span>", $this->attributes['toc']);
+		
+		if ($this->attributes['zac']) 
+			$details[]=sprintf("<span title='%s'>%s</span>", 
+				$this->attributes['zan']
+			    . (!empty($this->attributes['ztx']) ? ', '.$this->attributes['ztx'] : '')
+			    . (!empty($this->attributes['ltx']) ? ', '.$this->attributes['ltx'] : '')
+			    . (!empty($this->attributes['atx']) ? ', '.$this->attributes['atx'] : ''),
+			    $this->attributes['zac']
+			);
+		
+		if ($this->attributes['vpc'])
+			$details[]=sprintf("<span title='%s'>%s</span>",
+				$this->attributes['vpn']
+				. (!empty($this->attributes['itx']) ? ', '.$this->attributes['itx'] : ''),
+				$this->attributes['vpc']
+			);
+		
+		if ($details)
+			$out []= implode(' | ', $details);
 		
 		return implode('<br>', $out);
 	}
