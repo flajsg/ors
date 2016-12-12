@@ -32,27 +32,6 @@ class OrmApiWrapper extends OrsApiBase {
 	 */
 	public function handler() { return $this->oa_handler; }
 	
-	/**
-	 * @return \Ors\Orsapi\Handlers\OrmApiHandler
-	 */
-	public function setAgencyKey($agency, $ibeid=0, $master_key) {
-	    return $this->handler()->setAgencyKey($agency, $ibeid, $master_key);
-	}
-	
-	/**
-	 * @return \Ors\Orsapi\Handlers\OrmApiHandler
-	 */
-	public function setLogin($agency, $ibeid=0, $usr, $pass) {
-	    return $this->handler()->setLogin($agency, $ibeid, $usr, $pass);
-	}
-	
-	/**
-	 * @return \Ors\Orsapi\Handlers\OrmApiHandler
-	 */
-	public function setAuthLogin($auth) {
-	    return $this->handler()->setAuthLogin($auth);
-	}
-	
 	public function orm($params, $orm) {
 		return $this->handler()->orm($params, $orm);
 	}

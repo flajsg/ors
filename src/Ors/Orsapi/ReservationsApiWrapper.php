@@ -33,20 +33,6 @@ class ReservationsApiWrapper extends OrsApiBase {
 	 */
 	public function handler() { return $this->oa_handler; }
 	
-	/**
-	 * @return \Ors\Orsapi\Handlers\OrmApiHandler
-	 */
-	public function setLogin($agency, $ibeid=0, $usr, $pass) {
-	    return $this->handler()->setLogin($agency, $ibeid, $usr, $pass);
-	}
-	
-	/**
-	 * @return \Ors\Orsapi\Handlers\OrmApiHandler
-	 */
-	public function setAuthLogin($auth) {
-	    return $this->handler()->setAuthLogin($auth);
-	}
-	
 	public function search($params, $filters, $search = array()) {
 	    return $this->handler()->search($params, $filters, $search);
 	}

@@ -55,27 +55,4 @@ class SearchApiWrapper extends OrsApiBase {
 	 */
 	public function handler() { return $this->oa_handler; }
 	
-	/**
-	 * @return \Ors\Orsapi\SearchApiWrapper
-	 */
-	public function setLogin($agency, $ibeid=0, $usr, $pass) {
-	    $this->handler()->setLogin($agency, $ibeid, $usr, $pass);
-	    return $this;
-	}
-	
-	/**
-	 * @return \Ors\Orsapi\SearchApiWrapper
-	 */
-	public function setAuthLogin($auth) {
-	    $this->handler()->setAuthLogin($auth);
-	    return $this;
-	}
-	
-	/**
-	 * @return \Ors\Orsapi\SearchApiWrapper
-	 */
-	public function setIbeid($ibeid) {
-	    $this->handler()->setIbeid($ibeid);
-	    return $this;
-	}
 }

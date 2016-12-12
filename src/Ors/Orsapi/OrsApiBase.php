@@ -47,4 +47,37 @@ class OrsApiBase {
 	public function setHandler($oa_handler) {
 		$this->oa_handler = $oa_handler;
 	}
+	
+	/**
+	 * @return \Ors\Orsapi\OrsApiBase
+	 */
+	public function setAgencyKey($agency, $ibeid=0, $master_key) {
+	    $this->handler()->setAgencyKey($agency, $ibeid, $master_key);
+	    return $this;
+	}
+	
+	/**
+	 * @return \Ors\Orsapi\OrsApiBase
+	 */
+	public function setLogin($agency, $ibeid=0, $usr, $pass) {
+	    $this->handler()->setLogin($agency, $ibeid, $usr, $pass);
+	    return $this;
+	}
+	
+	/**
+	 * @return \Ors\Orsapi\OrsApiBase
+	 */
+	public function setAuthLogin($auth) {
+	    $this->handler()->setAuthLogin($auth);
+	    return $this;
+	}
+	
+	/**
+	 * @return \Ors\Orsapi\OrsApiBase
+	 */
+	public function setIbeid($ibeid) {
+	    $this->handler()->setIbeid($ibeid);
+	    return $this;
+	}
+	
 }

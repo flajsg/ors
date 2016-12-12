@@ -32,10 +32,6 @@ class ConnConfigApiWrapper extends OrsApiBase {
 	 */
 	public function handler() { return $this->oa_handler; }
 	
-	public function hello() {
-		Common::ppre('Hi there!');
-	}
-	
 	/**
 	 * Return Connection object based on connection_id
 	 * 
