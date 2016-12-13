@@ -243,6 +243,9 @@ class ORM extends Eloquent {
 	    	if (empty($attributes['operator']['act']) && !empty($attributes['act']))
 	    		$attributes['operator']['act'] = $attributes['act'];
 	    	
+	    	if (empty($attributes['operator']['ibeid']) && !empty($attributes['ibeid']))
+	    		$attributes['operator']['ibeid'] = $attributes['ibeid'];
+	    	
         	$this->operator = new ORMOperator($attributes['operator']);
 	    }else
         	$this->operator = new ORMOperator();
