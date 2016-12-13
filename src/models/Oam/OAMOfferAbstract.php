@@ -35,4 +35,12 @@ abstract class OAMOfferAbstract extends Eloquent {
 	 * @return string
 	 */
 	abstract public function getCartOfferDetailsAttribute();
+	
+	/**
+	 * Merge model attributes (insert missing values)
+	 * @param array $attributes
+	 */
+	public function mergeAttributes($attributes = array()) {
+	    $this->attributes = array_merge($this->attributes, $attributes);
+	}
 }

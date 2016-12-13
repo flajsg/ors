@@ -20,4 +20,11 @@ abstract class OAMObjectAbstract extends Eloquent {
 	 */
 	abstract public function getCartOfferNameAttribute();
 	
+	/**
+	 * Merge model attributes (insert missing values)
+	 * @param array $attributes
+	 */
+	public function mergeAttributes($attributes = array()) {
+	    $this->attributes = array_merge($this->attributes, $attributes);
+	}
 }
