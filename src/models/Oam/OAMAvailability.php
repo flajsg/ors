@@ -56,9 +56,9 @@ class OAMAvailability extends Eloquent {
 	    // Object model
 	    $object_class = "Ors\Orsapi\Oam\OAMObject_{$data['ctype_id']}";
 	    if (class_exists($object_class))
-		    $instance->object = new $object_class($data['offer']);
+		    $instance->object = new $object_class(!empty($data['object']) ? $data['object'] : $data['offer']);
 	    else
-		    $instance->object = new OAMObject($data['offer']);
+		    $instance->object = new OAMObject(!empty($data['object']) ? $data['object'] : $data['offer']);
 
 	    // Add Services
 	    if (!empty($data['services']))
