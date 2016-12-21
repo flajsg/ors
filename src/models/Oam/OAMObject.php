@@ -75,6 +75,12 @@ class OAMObject extends OAMObjectAbstract {
     public $subs;
     
     /**
+     * Object sids (Roundtrip entry points)
+     * @var Collection|OAMObjectContent[]
+     */
+    public $sids;
+    
+    /**
      * Object facts
      * @var Collection|OAMObjectContent[]
      */
@@ -98,6 +104,7 @@ class OAMObject extends OAMObjectAbstract {
     	$this->tocs = new Collection();
     	$this->tdcs = new Collection();
     	$this->subs = new Collection();
+    	$this->sids = new Collection();
     	$this->facts = new Collection();
     	$this->offers = new Collection();
     }
@@ -150,6 +157,9 @@ class OAMObject extends OAMObjectAbstract {
         
         if (!empty($this->subs))
         	$array['subs'] = $this->subs->toArray();
+        
+        if (!empty($this->sids))
+        	$array['sids'] = $this->sids->toArray();
         
         if (!empty($this->facts))
         	$array['facts'] = $this->facts->toArray();
