@@ -232,6 +232,8 @@ class SearchApiHandler extends SoapApiBaseHandler implements ITAG_SearchApiInter
 		    $this->_addObjectContent($item, 'vpcs', $o_model);
 		    $this->_addObjectContent($item, 'zacs', $o_model);
 		    $this->_addObjectContent($item, 'tocs', $o_model);
+		    $this->_addObjectContent($item, 'tdcs', $o_model);
+		    $this->_addObjectContent($item, 'subs', $o_model);
 		    
 		    $o_model->facts = new Collection();
 		    if (!empty($item['facts']))

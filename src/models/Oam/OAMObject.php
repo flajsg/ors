@@ -63,6 +63,18 @@ class OAMObject extends OAMObjectAbstract {
     public $tocs;
             
     /**
+     * Object tdcs (Durations)
+     * @var Collection|OAMObjectContent[]
+     */
+    public $tdcs;
+    
+    /**
+     * Object subs (Transfer type)
+     * @var Collection|OAMObjectContent[]
+     */
+    public $subs;
+    
+    /**
      * Object facts
      * @var Collection|OAMObjectContent[]
      */
@@ -84,6 +96,8 @@ class OAMObject extends OAMObjectAbstract {
     	$this->vpcs = new Collection();
     	$this->zacs = new Collection();
     	$this->tocs = new Collection();
+    	$this->tdcs = new Collection();
+    	$this->subs = new Collection();
     	$this->facts = new Collection();
     	$this->offers = new Collection();
     }
@@ -130,6 +144,12 @@ class OAMObject extends OAMObjectAbstract {
         
         if (!empty($this->tocs))
         	$array['tocs'] = $this->tocs->toArray();
+        
+        if (!empty($this->tdcs))
+        	$array['tdcs'] = $this->tdcs->toArray();
+        
+        if (!empty($this->subs))
+        	$array['subs'] = $this->subs->toArray();
         
         if (!empty($this->facts))
         	$array['facts'] = $this->facts->toArray();
