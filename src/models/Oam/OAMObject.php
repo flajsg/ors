@@ -81,6 +81,12 @@ class OAMObject extends OAMObjectAbstract {
     public $sids;
     
     /**
+     * Object vnds (Departure dates)
+     * @var Collection|OAMObjectContent[]
+     */
+    public $vnds;
+    
+    /**
      * Object facts
      * @var Collection|OAMObjectContent[]
      */
@@ -105,6 +111,7 @@ class OAMObject extends OAMObjectAbstract {
     	$this->tdcs = new Collection();
     	$this->subs = new Collection();
     	$this->sids = new Collection();
+    	$this->vnds = new Collection();
     	$this->facts = new Collection();
     	$this->offers = new Collection();
     }
@@ -160,6 +167,9 @@ class OAMObject extends OAMObjectAbstract {
         
         if (!empty($this->sids))
         	$array['sids'] = $this->sids->toArray();
+        
+        if (!empty($this->vnds))
+        	$array['vnds'] = $this->vnds->toArray();
         
         if (!empty($this->facts))
         	$array['facts'] = $this->facts->toArray();
