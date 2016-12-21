@@ -36,6 +36,9 @@ class OAMObject extends OAMObjectAbstract {
     			
     	// price
     	'ppc',
+    	
+    	// extras
+    	'sub',
 	];
 
     /**
