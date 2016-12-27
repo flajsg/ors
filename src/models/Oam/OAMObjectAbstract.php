@@ -25,6 +25,6 @@ abstract class OAMObjectAbstract extends Eloquent {
 	 * @param array $attributes
 	 */
 	public function mergeAttributes($attributes = array()) {
-	    $this->attributes = array_merge($this->attributes, $attributes);
+		$this->attributes = array_merge(array_filter($attributes), array_filter($this->attributes));
 	}
 }
