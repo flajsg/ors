@@ -30,6 +30,7 @@ class ObjectInfoApiHandler extends SoapApiBaseHandler implements ITAG_SearchApiI
 	    $response = $this->orsSoapClient->$call( 'info', $params->__toArray(), $this->header );
 	
 	    // debug xmlReq
+	    Common::ppreDebug( $response['post_url'], 'url');
 	    Common::ppreDebug( htmlspecialchars($response['xmlReq']), 'xmlReq');
 	    //Common::ppre( $response['xmlReq'], 'xmlReq');
 	    //Common::ppre( $response, 'Response');
@@ -113,6 +114,7 @@ class ObjectInfoApiHandler extends SoapApiBaseHandler implements ITAG_SearchApiI
 	    $response = $this->orsSoapClient->$call( 'info', $params->__toArray(), $this->header );
 	
 	    // debug xmlReq
+	    Common::ppreDebug( $response['post_url'], 'url');
 	    Common::ppreDebug( htmlspecialchars($response['xmlReq']), 'xmlReq');
 	
 	    // check for error

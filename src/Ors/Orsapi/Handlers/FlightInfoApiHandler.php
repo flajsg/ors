@@ -23,6 +23,7 @@ class FlightInfoApiHandler extends SoapApiBaseHandler implements ITAG_SearchApiI
 	    $response = $this->orsSoapClient->$call( 'flightInfo', $params->__toArray(), $this->header );
 	
 	    // debug xmlReq
+	    Common::ppreDebug( $response['post_url'], 'url');
 	    Common::ppreDebug( htmlspecialchars($response['xmlReq']), 'xmlReq');
 	    //Common::ppre( $params->__toArray(), 'Response');
 	    //Common::ppre( $this->header, 'Response');

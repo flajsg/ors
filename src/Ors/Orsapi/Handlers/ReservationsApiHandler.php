@@ -109,6 +109,7 @@ class ReservationsApiHandler extends SoapApiBaseHandler implements ReservationsA
 	    $response = $this->orsSoapClient->$call( 'search', $search, $this->header );
 	
 	    // debug xmlReq
+	    Common::ppreDebug( $response['post_url'], 'url');
 	    if (!empty($response['xmlReq'])) Common::ppreDebug( htmlspecialchars($response['xmlReq']), 'xmlReq');
 	    if (!empty($response['xmlRes'])) Common::ppreDebug( htmlspecialchars($response['xmlRes']), 'xmlRes');
 	
@@ -164,6 +165,7 @@ class ReservationsApiHandler extends SoapApiBaseHandler implements ReservationsA
 	    $response = $this->orsSoapClient->$call( 'totals', $search, $this->header );
 	
 	    // debug xmlReq
+	    Common::ppreDebug( $response['post_url'], 'url');
 	    if (!empty($response['xmlReq'])) Common::ppreDebug( htmlspecialchars($response['xmlReq']), 'xmlReq');
 	    if (!empty($response['xmlRes'])) Common::ppreDebug( htmlspecialchars($response['xmlRes']), 'xmlRes');
 	    	
@@ -205,6 +207,7 @@ class ReservationsApiHandler extends SoapApiBaseHandler implements ReservationsA
 		$response = $this->orsSoapClient->$call( 'history', $search, $this->header );
 		
 		// debug xmlReq
+		Common::ppreDebug( $response['post_url'], 'url');
 		if (!empty($response['xmlReq'])) Common::ppreDebug( htmlspecialchars($response['xmlReq']), 'xmlReq');
 		if (!empty($response['xmlRes'])) Common::ppreDebug( htmlspecialchars($response['xmlRes']), 'xmlRes');
 		
@@ -252,6 +255,7 @@ class ReservationsApiHandler extends SoapApiBaseHandler implements ReservationsA
 		$response = $this->orsSoapClient->$call( 'chown', $search, $this->header );
 		
 		// debug xmlReq
+		Common::ppreDebug( $response['post_url'], 'url');
 		if (!empty($response['xmlReq'])) Common::ppreDebug( htmlspecialchars($response['xmlReq']), 'xmlReq');
 		if (!empty($response['xmlRes'])) Common::ppreDebug( htmlspecialchars($response['xmlRes']), 'xmlRes');
 		

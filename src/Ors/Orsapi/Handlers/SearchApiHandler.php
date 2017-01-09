@@ -152,6 +152,7 @@ class SearchApiHandler extends SoapApiBaseHandler implements ITAG_SearchApiInter
 		$response = $this->orsSoapClient->$call( 'regions', $params->__toArray(), $this->header );
 		
 		// debug xmlReq
+		Common::ppreDebug( $response['post_url'], 'url');
 		Common::ppreDebug( htmlspecialchars($response['xmlReq']), 'xmlReq');
 		
 		// check for error
@@ -201,6 +202,7 @@ class SearchApiHandler extends SoapApiBaseHandler implements ITAG_SearchApiInter
 		$response = $this->orsSoapClient->$call( 'offers', $params->__toArray(), $this->header );
 		
 		// debug xmlReq
+		Common::ppreDebug( $response['post_url'], 'url');
 		Common::ppreDebug( htmlspecialchars($response['xmlReq']), 'xmlReq');
 		//Common::ppreDebug( htmlspecialchars($response['xmlRes']), 'xmlRes');
 		//Common::ppreDebug( $response, 'Response');
@@ -268,6 +270,7 @@ class SearchApiHandler extends SoapApiBaseHandler implements ITAG_SearchApiInter
 	    $response = $this->orsSoapClient->$call( 'trips', $params->__toArray(), $this->header );
 	
 	    // debug xmlReq
+	    Common::ppreDebug( $response['post_url'], 'url');
 	    Common::ppreDebug( htmlspecialchars($response['xmlReq']), 'xmlReq');
 	    //Common::ppreDebug( $response, 'Response');
 	
@@ -334,6 +337,7 @@ class SearchApiHandler extends SoapApiBaseHandler implements ITAG_SearchApiInter
 	    $response = $this->orsSoapClient->$call( 'units', $params->__toArray(), $this->header );
 	
 	    // debug xmlReq
+	    Common::ppreDebug( $response['post_url'], 'url');
 	    Common::ppreDebug( htmlspecialchars($response['xmlReq']), 'xmlReq');
 	    //Common::ppreDebug( $response, 'Response');
 	    //Common::ppreDebug( $response['tocs'][0]['rooms'], 'Response');
@@ -392,6 +396,7 @@ class SearchApiHandler extends SoapApiBaseHandler implements ITAG_SearchApiInter
 	    $response = $this->orsSoapClient->$call( 'check', $params->__toArray(), $params->__toArray(), $this->header );
 	
 	    // debug xmlReq
+	    Common::ppreDebug( $response['post_url'], 'url');
 	    Common::ppreDebug( htmlspecialchars($response['xmlReq']), 'xmlReq');
 	    Common::ppreDebug( htmlspecialchars($response['xmlRes']), 'xmlRes');
 	    //Common::ppreDebug( $response, 'Response');

@@ -42,6 +42,7 @@ class OrmApiHandler extends SoapApiBaseHandler implements OrmApiInterface {
 	    $response = $this->orsSoapClient->$call( 'orm', $params->__toArray()+$orm->toApiArray(), $this->header );
 	
 	    // debug xmlReq
+	    Common::ppreDebug( $response['post_url'], 'url');
 	    Common::ppreDebug( $params->__toArray(), 'search_params');
 	    Common::ppreDebug( htmlspecialchars($response['xmlReq']), 'xmlReq');
 	    Common::ppreDebug( $response, 'Response');
