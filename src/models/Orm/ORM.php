@@ -415,6 +415,7 @@ class ORM extends Eloquent {
 		$stab->setIcon('glyphicons glyphicons-book')->setColorClass('bg-alert light')->setAction('search_load_mask_orm_bkc');
 		$stab->with('search_params', array('ibeid' => $this->login->ibeid));
 		$stab->with('filters', ReservationsApi::makeSimpleFiltersGroup('book_id', array($this->operator->bkc))); 
+		$stab->with('bkc', $this->operator->bkc); 
 			
 		return $stab;
 	}
