@@ -157,6 +157,7 @@ class ORMService extends OAMAvailabilityService {
 		$array = parent::toArray();
 		$array['vnd_human'] = $this->vnd_human;
 		$array['bsd_human'] = $this->bsd_human;
+		$array['offer'] = $this->offer->toArray();
 		return $array;
 	}
 	
