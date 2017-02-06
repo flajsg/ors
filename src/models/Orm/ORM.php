@@ -44,6 +44,12 @@ class ORM extends Eloquent {
 	public $services;
 	
 	/**
+	 * ORM extras
+	 * @var Collection|ORMExtras
+	 */
+	public $extras;
+	
+	/**
 	 * ORM persons
 	 * @var Collection|ORMPerson
 	 */
@@ -82,6 +88,7 @@ class ORM extends Eloquent {
 		$this->createResponse($attributes);
 		$this->createServices($attributes);
 		$this->createOffers($attributes);
+		$this->createExtras($attributes);
 	}
 	
 	/**
@@ -105,6 +112,7 @@ class ORM extends Eloquent {
 	 * 		'services' => array([]),
 	 * 		'travellers' => array([]),
 	 * 		'offers' => array([]),
+	 * 		'extras' => array([]),
 	 * ))
 	 * 
 	 * // example of reservations api (single booking) response
@@ -116,6 +124,7 @@ class ORM extends Eloquent {
 	 * 		'services' => array('service' => [] ),
 	 * 		'travellers' => array('traveller' => [] ),
 	 * 		'offers' => array('offer' => [] ),
+	 * 		'extras' => array('item' => [] ),
 	 * ))
 	 * <code> 
 	 * 
@@ -131,6 +140,7 @@ class ORM extends Eloquent {
 			'services' 	=> !empty($admin['services']['service']) ? $admin['services']['service'] : $admin['services'],
 			'persons'  	=> !empty($admin['travellers']['traveller']) ? $admin['travellers']['traveller'] : $admin['travellers'],
 			'offers'  	=> !empty($admin['offers']['offer']) ? $admin['offers']['offer'] : $admin['offers'],
+			'extras'  	=> !empty($admin['extras']['item']) ? $admin['extras']['item'] : $admin['extras'],
 			//'offers'  	=> Common::padZeroArray($admin['offers']),
 			'info' 		=> !empty($admin['info']['line']) ? $admin['info']['line'] : $admin['info'],
 		);
@@ -183,7 +193,7 @@ class ORM extends Eloquent {
 			$attributes['offers'] = Common::padZeroArray($attributes['offers']);
 
 			foreach ($attributes['offers'] as $offer) {
-				
+
 				if (!empty($offer)) {
 				    $attributes = !empty($offer['@attributes']) ? $offer['@attributes'] : $offer;
 				    $attributes['toc'] = $this->operator->toc;
@@ -200,6 +210,28 @@ class ORM extends Eloquent {
 				    $srv->offer = $offer;
 				}
 
+			}
+		}
+	}
+	
+	/**
+	 * Create ORM extras.
+	 *
+	 * @param array $attributes
+	 * 		data must be inside $attributes[extras]
+	 */
+	public function createExtras($attributes) {
+		$this->extras = new Collection();
+		
+		if (!empty($attributes['extras'])) {
+
+			$attributes['extras'] = Common::padZeroArray($attributes['extras']);
+
+			foreach ($attributes['extras'] as $extras) {
+				if (!empty($extras)) {
+				    $attributes = !empty($extras['@attributes']) ? $extras['@attributes'] : $extras;
+				    $this->extras->push(new ORMExtras($attributes));
+				}
 			}
 		}
 	}
@@ -530,6 +562,7 @@ class ORM extends Eloquent {
 		$array['services'] = $this->services->toArray();
 		$array['persons']  = $this->persons->toArray();
 		$array['offers']   = $this->offers->toArray();
+		$array['extras']   = $this->extras->toArray();
 		return $array;
 	}
 	
@@ -556,11 +589,11 @@ class ORM extends Eloquent {
 		
 		$array = array('admin' => array('attributes' => ['typ' => 'thrugh']));
 		$array['admin']['login'] 	  = $this->login->toArray();
-		//$array['admin']['login'] 	  = ORMLogin::withAuthUser()->toArray();
 		$array['admin']['operator']   = $this->operator->toArray();
 		$array['admin']['customer']   = empty($this->customer_psn) ? array() : $this->customer_psn->toArray();
 		$array['admin']['travellers'] = ORMPerson::transformForApi($this->persons)->toArray();
 		$array['admin']['services']   = $this->services->toArray();
+		$array['admin']['extras']     = $this->extras->toArray();
 		
 		// Fix AGN
 		$array['admin']['services'] = ORMService::agnToSequence($array['admin']['services'], $array['admin']['travellers']);
