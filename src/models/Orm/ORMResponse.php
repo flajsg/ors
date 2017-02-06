@@ -75,6 +75,16 @@ class ORMResponse extends OAMAvailabilityResponse {
     	return !empty($this->attributes['dirty']);
     }
     
+    /**
+     * Return true if this is a booking confirmation response (DR, XR).
+     * Method will return true also for test booking confirmations.
+     * @return boolean
+     */
+    public function isConfirmationResponse() {
+    	return in_array($this->mid, [225,265]);
+    }
+    
+    
     public function toArray(){
         $array = parent::toArray();
         unset($array['ttp_check']);
