@@ -74,6 +74,12 @@ class ORM extends Eloquent {
 	public $login;
 	
 	/**
+	 * Booking Confirmation
+	 * @var ORMComfirmation
+	 */
+	public $confirmation;
+	
+	/**
 	 * Offers (depending on service). Offer[id] is a sequence id of coresponding service.
 	 * @var Collection|ORMOffer
 	 */
@@ -89,6 +95,7 @@ class ORM extends Eloquent {
 		$this->createServices($attributes);
 		$this->createOffers($attributes);
 		$this->createExtras($attributes);
+		$this->createConfirmation($attributes);
 	}
 	
 	/**
@@ -113,6 +120,7 @@ class ORM extends Eloquent {
 	 * 		'travellers' => array([]),
 	 * 		'offers' => array([]),
 	 * 		'extras' => array([]),
+	 * 		'confirmation' => array([]),
 	 * ))
 	 * 
 	 * // example of reservations api (single booking) response
@@ -125,6 +133,7 @@ class ORM extends Eloquent {
 	 * 		'travellers' => array('traveller' => [] ),
 	 * 		'offers' => array('offer' => [] ),
 	 * 		'extras' => array('item' => [] ),
+	 * 		'confirmation' => array( [] ),
 	 * ))
 	 * <code> 
 	 * 
@@ -143,6 +152,7 @@ class ORM extends Eloquent {
 			'extras'  	=> !empty($admin['extras']['item']) ? $admin['extras']['item'] : $admin['extras'],
 			//'offers'  	=> Common::padZeroArray($admin['offers']),
 			'info' 		=> !empty($admin['info']['line']) ? $admin['info']['line'] : $admin['info'],
+			'confirmation'	=> !empty($admin['confirmation']) ? $admin['confirmation'] : array(),
 		);
 		
 		// Fix AGN
@@ -307,10 +317,21 @@ class ORM extends Eloquent {
 		
 		if (!empty($attributes['login']))
 			$this->login = new ORMLogin($attributes['login']);
-		//else
-			//$this->login = ORMLogin::withAuthUser();
 		
 		$this->user = $this->login->user;
+	}
+	
+	/**
+	 * Create ORM confirmation.
+	 * 
+	 * @param array $attributes
+	 * 		data must be inside $attributes[confirmation]
+	 */
+	public function createConfirmation($attributes) {
+		if (!empty($attributes['confirmation']))
+			$this->confirmation = new ORMConfirmation($attributes['confirmation']);
+		else
+			$this->confirmation = new ORMConfirmation([]);
 	}
 	
 	/**
@@ -563,6 +584,7 @@ class ORM extends Eloquent {
 		$array['persons']  = $this->persons->toArray();
 		$array['offers']   = $this->offers->toArray();
 		$array['extras']   = $this->extras->toArray();
+		$array['confirmation']   = $this->confirmation->toArray();
 		return $array;
 	}
 	
@@ -594,6 +616,7 @@ class ORM extends Eloquent {
 		$array['admin']['travellers'] = ORMPerson::transformForApi($this->persons)->toArray();
 		$array['admin']['services']   = $this->services->toArray();
 		$array['admin']['extras']     = $this->extras->toArray();
+		$array['admin']['confirmation']     = $this->confirmation->toArray();
 		
 		// Fix AGN
 		$array['admin']['services'] = ORMService::agnToSequence($array['admin']['services'], $array['admin']['travellers']);
