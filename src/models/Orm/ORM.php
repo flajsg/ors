@@ -345,11 +345,17 @@ class ORM extends Eloquent {
 		
 		foreach ($extras as $e) {
 			
+			$agn = $e->persons ? implode(',', range(1, $e->persons)) : '';
+			
 			$this->services->push(new ORMService(array(
 				'typ' => 'EX',
 				'cod' => $e['id'],
+				'opt' => $e['opt'],
+				'op2' => $e['op2'],
 				'vnd' => $e['dateFrom'],
 				'bsd' => $e['dateTo'],
+				'agn' => $agn,
+				'scp' => $e['price']
 			)));
 		}
 		
