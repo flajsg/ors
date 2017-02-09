@@ -15,7 +15,7 @@ class OAMAvailabilityExtras extends Eloquent {
      * @var array
      */
     protected $fillable = [
-    	'id', 'name', 'price', 'ppc', 'price_type', 'min_age', 'max_age', 'included', 'persons', 'dateFrom', 'dateTo'
+    	'id', 'opt', 'op2', 'name', 'price', 'ppc', 'price_type', 'min_age', 'max_age', 'included', 'persons', 'dateFrom', 'dateTo'
 	];
    
     /**
