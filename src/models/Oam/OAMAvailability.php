@@ -165,6 +165,9 @@ class OAMAvailability extends Eloquent {
         if (!empty($this->offer))
         	$array['offer'] = $this->offer->toArray();
         
+        if (!empty($this->extras))
+        	$array['extras'] = $this->extras->toArray();
+        
         if (!empty($this->flightInfo))
         	$array['flightInfo'] = $this->flightInfo->toArray();
         
