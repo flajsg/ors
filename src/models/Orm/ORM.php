@@ -352,6 +352,7 @@ class ORM extends Eloquent {
 				'cod' => $e['id'],
 				'opt' => $e['opt'],
 				'op2' => $e['op2'],
+				'cnt' => $e['cnt'],
 				'vnd' => $e['dateFrom'],
 				'bsd' => $e['dateTo'],
 				'agn' => $agn,
