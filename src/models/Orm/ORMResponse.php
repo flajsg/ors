@@ -84,6 +84,13 @@ class ORMResponse extends OAMAvailabilityResponse {
     	return in_array($this->mid, [225,265]);
     }
     
+    /**
+     * Return true if this is a voucher confirmation response (VC).
+     * @return boolean
+     */
+    public function isVoucherResponse() {
+    	return in_array($this->mid, [240]);
+    }
     
     public function toArray(){
         $array = parent::toArray();
