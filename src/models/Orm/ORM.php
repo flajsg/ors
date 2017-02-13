@@ -162,7 +162,7 @@ class ORM extends Eloquent {
 			//'offers'  	=> Common::padZeroArray($admin['offers']),
 			'info' 		=> !empty($admin['info']['line']) ? $admin['info']['line'] : $admin['info'],
 			'confirmation'	=> !empty($admin['confirmation']) ? $admin['confirmation'] : array(),
-			'attachment'	=> !empty($admin['attachment']['@attributes']) ? $admin['attachment']['@attributes'] : array(),
+			'attachment'	=> !empty($admin['attachment']['@attributes']) ? $admin['attachment']['@attributes'] : $admin['attachment'],
 		);
 		
 		// Fix AGN
