@@ -25,6 +25,7 @@ class OAMOffer extends OAMOfferAbstract {
     	
     	// offer
     	'htn', 'hon', 'stc', 'sub',  'zac', 'zan', 'vpc', 'vpn', 'htc', 'svc', 'vnd', 'bsd', 'tdc', 'ahc', 'ahn', 'zhc', 'zhn', 'sin', 'sid', 'status',
+    	'stock', 'stock_txt',
 
     	// offer details
     	'aid', 'atx', 'iid', 'itx', 'lid', 'ltx', 'vid', 'vtx', 'zid', 'ztx',
