@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Config;
  */
 class ORMLogin extends Eloquent {
 	
-	protected $fillable = ['agn', 'userid', 'usernm', 'userem', 'usr', 'ptr'];
+	protected $fillable = ['agn', 'agem', 'userid', 'usernm', 'userem', 'usr', 'subnm', 'subem'];
 
 	public function __construct($attributes = array()) {
 		parent::__construct($attributes);
