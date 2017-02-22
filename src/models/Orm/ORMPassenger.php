@@ -18,7 +18,7 @@ class ORMPassenger extends Eloquent implements SmartAutocompleteInterface {
 	
 	
 	protected $fillable = ['id', 'agency_id', 'sex', 'first_name', 'last_name', 'birth_date', 'email', 'telephone', 'mobile_phone', 'city', 'street', 'zip_code', 'country', 
-		'deleted', 'api_added', 'last_modified', 'merged_to', 'merged_from', 'readonly'];
+		'deleted', 'api_added', 'last_modified', 'merged_to', 'merged_from', 'read_only'];
 	
 	protected $primaryKey = 'id';
 	
@@ -116,11 +116,11 @@ class ORMPassenger extends Eloquent implements SmartAutocompleteInterface {
 	}
 	
 	/**
-	 * IsDeleted attribute (same as deleted)
+	 * Readonly attribute
 	 * @return boolean
 	 */
-	public function getIsDeletedAttribute() {
-		return isset($this->attributes['deleted']) ? (bool)$this->attributes['deleted'] : false;;
+	public function getReadOnlyAttribute() {
+		return isset($this->attributes['read_only']) ? (bool)$this->attributes['read_only'] : false;
 	}
 	
 	/**
@@ -152,6 +152,7 @@ class ORMPassenger extends Eloquent implements SmartAutocompleteInterface {
 			'zip' => $this->zip_code,
 			'cny' => $this->country,
 			'is_deleted' => $this->deleted, 
+			'is_readonly' => $this->read_only, 
 			'api_added' => $this->api_added, 
 			'last_modified' => $this->last_modified
 		));
@@ -248,7 +249,7 @@ class ORMPassenger extends Eloquent implements SmartAutocompleteInterface {
 	 * @return boolean
 	 */
 	public function isDeleted() {
-		return isset($this->attributes['deleted']) ? (bool)$this->attributes['deleted'] : false;
+		return $this->Deleted;
 	}
 	
 	/**
@@ -256,7 +257,7 @@ class ORMPassenger extends Eloquent implements SmartAutocompleteInterface {
 	 * @return boolean
 	 */
 	public function isReadonly() {
-	    return isset($this->attributes['readonly']) ? (bool)$this->attributes['readonly'] : false;
+	    return $this->ReadOnly;
 	}
 	
 	/**
@@ -264,7 +265,7 @@ class ORMPassenger extends Eloquent implements SmartAutocompleteInterface {
 	 * @return boolean
 	 */
 	public function isApiAdded() {
-	    return isset($this->attributes['api_added']) ? (bool)$this->attributes['api_added'] : false;
+	    return $this->ApiAdded;
 	}
 	
 }

@@ -18,7 +18,7 @@ class ORMPerson extends Eloquent {
      * [last-modified] => 03.03.2016 15:43:40
 	 */
 	
-	protected $fillable = ['id', 'psnid', 'typ', 'sur', 'pre', 'age', 'tvp', 'eml', 'mob', 'tel', 'str', 'cty', 'zip', 'cny', 'agency_id', 'is_deleted', 'api_added', 'last_modified', 'is_agency'];
+	protected $fillable = ['id', 'psnid', 'typ', 'sur', 'pre', 'age', 'tvp', 'eml', 'mob', 'tel', 'str', 'cty', 'zip', 'cny', 'agency_id', 'is_deleted', 'api_added', 'last_modified', 'is_agency', 'is_readonly'];
 	
 	protected $primaryKey = 'id';
 	
@@ -166,6 +166,30 @@ class ORMPerson extends Eloquent {
 	 */
 	public function isChild() {
 	    return !$this->isAdult();
+	}
+	
+	/**
+	 * Return true if passenger is deleted
+	 * @return boolean
+	 */
+	public function isDeleted() {
+	    return (bool)$this->is_deleted;
+	}
+	
+	/**
+	 * Return true if passenger is readonly
+	 * @return boolean
+	 */
+	public function isReadonly() {
+	    return (bool)$this->is_readonly;
+	}
+	
+	/**
+	 * Return true if passenger is api-added
+	 * @return boolean
+	 */
+	public function isApiAdded() {
+	    return $this->api_added;
 	}
 	
 	/*
