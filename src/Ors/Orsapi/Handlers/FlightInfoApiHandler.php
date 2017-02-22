@@ -25,6 +25,7 @@ class FlightInfoApiHandler extends SoapApiBaseHandler implements ITAG_SearchApiI
 	    // debug xmlReq
 	    Common::ppreDebug( $response['post_url'], 'url');
 	    Common::ppreDebug( htmlspecialchars($response['xmlReq']), 'xmlReq');
+	    Common::ppreDebug( htmlspecialchars($response['xmlRes']), 'xmlRes');
 	    //Common::ppre( $params->__toArray(), 'Response');
 	    //Common::ppre( $this->header, 'Response');
 	    //Common::ppre( $response, 'Response');
