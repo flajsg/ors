@@ -18,7 +18,7 @@ class ORMPassenger extends Eloquent implements SmartAutocompleteInterface {
 	
 	
 	protected $fillable = ['id', 'agency_id', 'sex', 'first_name', 'last_name', 'birth_date', 'email', 'telephone', 'mobile_phone', 'city', 'street', 'zip_code', 'country', 
-		'deleted', 'api_added', 'last_modified', 'merged_to', 'merged_from'];
+		'deleted', 'api_added', 'last_modified', 'merged_to', 'merged_from', 'readonly'];
 	
 	protected $primaryKey = 'id';
 	
@@ -116,7 +116,7 @@ class ORMPassenger extends Eloquent implements SmartAutocompleteInterface {
 	}
 	
 	/**
-	 * IdDeleted attribute (same as deleted)
+	 * IsDeleted attribute (same as deleted)
 	 * @return boolean
 	 */
 	public function getIsDeletedAttribute() {
@@ -237,6 +237,34 @@ class ORMPassenger extends Eloquent implements SmartAutocompleteInterface {
 	 */
 	public function getTravelerIdAttribute() {
 	    return $this->attributes['id'];
+	}
+	
+	/*
+	 * HELPERS 
+	 */
+	
+	/**
+	 * Return true if passenger is deleted
+	 * @return boolean
+	 */
+	public function isDeleted() {
+		return isset($this->attributes['deleted']) ? (bool)$this->attributes['deleted'] : false;
+	}
+	
+	/**
+	 * Return true if passenger is readonly
+	 * @return boolean
+	 */
+	public function isReadonly() {
+	    return isset($this->attributes['readonly']) ? (bool)$this->attributes['readonly'] : false;
+	}
+	
+	/**
+	 * Return true if passenger is api-added
+	 * @return boolean
+	 */
+	public function isApiAdded() {
+	    return isset($this->attributes['api_added']) ? (bool)$this->attributes['api_added'] : false;
 	}
 	
 }
