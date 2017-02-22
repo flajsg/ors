@@ -76,13 +76,16 @@ class SoapApiBaseHandler extends BaseHandler {
 	protected function _makeHeader($params) {
 		$params = $this->toSmartParams($params);
 	
-	    // get account info from ibeid (Currently only if TEST mode is enabled)
 	    $this->header['agid'] = $this->agid;
 	    
-	    if (!empty($params->find('ibeid')->value))
-	    	$this->setIbeid($params->find('ibeid')->value);
+	    if (isset($this->ibeid) && !empty($this->ibeid)) {
+	    	$this->header['ibeid'] = $this->ibeid;
+	    }
+	    else {
+	    	if (!empty($params->find('ibeid')->value))
+	    		$this->setIbeid($params->find('ibeid')->value);
+	    }
 	    
-	    $this->header['ibeid'] = $this->ibeid;
 	    $this->header['lang'] = $this->getLang();
 	
 	    // set login credentials
