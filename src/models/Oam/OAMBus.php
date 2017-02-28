@@ -38,6 +38,22 @@ class OAMBus extends Eloquent {
 	    
 	    return $seats;
 	}
+	
+	/**
+	 * Organize seats into two dimensional array (x,y).
+	 * 
+	 * @return array
+	 */
+	public function getSeats2CoordinatesAttribute() {
+		if ($this->seats->isEmpty()) return array();
+		
+		$seats = $this->seats;
+		$seats_coords = array();
+		
+		foreach ($seats as $seat) $seats_coords[$seat->x][$seat->y] = $seat;
+		
+		return $seats_coords;
+	}
 } 
 
 /**
