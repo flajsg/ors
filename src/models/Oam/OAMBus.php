@@ -70,6 +70,45 @@ class OAMBus extends Eloquent {
 		
 		return $seats_coords;
 	}
+	
+	/*
+	 * HELPERS
+	 */
+	
+	/**
+	 * Return bus seat by x,y coordinate.
+	 * 
+	 * @param int $x
+	 * @param int $y
+	 * @return OAMBusSeat
+	 */
+	public function seatByCoordinate($x, $y) {
+		$seat = $this->seats->filter(function($item) use($x, $y) {
+			return $item->x == $x && $item->y == $y;
+		});
+		
+		return $seat->first();
+	}
+	
+	/**
+	 * Max Y coordinate.
+	 * @return int
+	 */
+	public function maxRows() {
+		return $this->seats->reduce(function($carry, $item){
+			return $item->y > $carry ? $item->y : $carry; 
+		}, 0);
+	}
+	
+	/**
+	 * Max X coordinate.
+	 * @return int
+	 */
+	public function maxColls() {
+		return $this->seats->reduce(function($carry, $item){
+			return $item->x > $carry ? $item->x : $carry; 
+		}, 0);
+	}
 } 
 
 /**
