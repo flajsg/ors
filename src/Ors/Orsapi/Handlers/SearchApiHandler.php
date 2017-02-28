@@ -22,6 +22,7 @@ use Ors\Orsapi\Oam\OAMAvailabilityResponse;
 use Ors\Orsapi\Oam\OAMAvailabilityPerson;
 use Ors\Orsapi\Oam\OAMAvailabilityExtras;
 use Ors\Orsapi\Oam\OAMAvailabilityService;
+use Ors\Orsapi\Oam\OAMBus;
 
 
 /**
@@ -456,6 +457,13 @@ class SearchApiHandler extends SoapApiBaseHandler implements ITAG_SearchApiInter
 	    if (!empty($response['extras'])) {
 	    	foreach ($response['extras'] as $item) {
 	    		$a_model->extras->push(new OAMAvailabilityExtras($item['info']));
+	    	}
+	    }
+	    // add buses
+	    $a_model->buses = new Collection();
+	    if (!empty($response['buses'])) {
+	    	foreach ($response['buses'] as $item) {
+	    		$a_model->buses->push(new OAMBus($item));
 	    	}
 	    }
 	
