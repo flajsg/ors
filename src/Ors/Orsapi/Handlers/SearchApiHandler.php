@@ -463,7 +463,9 @@ class SearchApiHandler extends SoapApiBaseHandler implements ITAG_SearchApiInter
 	    $a_model->buses = new Collection();
 	    if (!empty($response['buses'])) {
 	    	foreach ($response['buses'] as $item) {
-	    		$a_model->buses->push(new OAMBus($item));
+	    		$bus = $item['attributes'];
+	    		$bus['seats'] = @$item['seats'];
+	    		$a_model->buses->push(new OAMBus($bus));
 	    	}
 	    }
 	
