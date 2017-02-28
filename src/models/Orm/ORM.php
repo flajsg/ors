@@ -6,6 +6,7 @@ use Ors\Support\Common;
 use Ors\Support\SmartTab;
 use Ors\Orsapi\Facades\PassengerApi;
 use Ors\Orsapi\Facades\ReservationsApi;
+use Ors\Orsapi\Oam\OAMBus;
 
 /**
  * ORM Class.
@@ -91,6 +92,12 @@ class ORM extends Eloquent {
 	 */
 	public $offers;
 	
+	/**
+	 * Buses
+	 * @var Collection|OAMBus
+	 */
+	public $buses;
+	
 	public function __construct($attributes = array()) {
 		parent::__construct($attributes);
 		
@@ -101,6 +108,7 @@ class ORM extends Eloquent {
 		$this->createServices($attributes);
 		$this->createOffers($attributes);
 		$this->createExtras($attributes);
+		$this->createBuses($attributes);
 		$this->createConfirmation($attributes);
 		$this->createAttachment($attributes);
 	}
@@ -127,6 +135,7 @@ class ORM extends Eloquent {
 	 * 		'travellers' => array([]),
 	 * 		'offers' => array([]),
 	 * 		'extras' => array([]),
+	 * 		'buses' => array([]),
 	 * 		'confirmation' => array([]),
 	 * 		'attachment' => array([]),
 	 * ))
@@ -141,6 +150,7 @@ class ORM extends Eloquent {
 	 * 		'travellers' => array('traveller' => [] ),
 	 * 		'offers' => array('offer' => [] ),
 	 * 		'extras' => array('item' => [] ),
+	 * 		'buses' => array('seats' => [] ),
 	 * 		'confirmation' => array( [] ),
 	 * 		'attachment' => array('@attributes' => []),
 	 * ))
@@ -159,6 +169,7 @@ class ORM extends Eloquent {
 			'persons'  	=> !empty($admin['travellers']['traveller']) ? $admin['travellers']['traveller'] : $admin['travellers'],
 			'offers'  	=> !empty($admin['offers']['offer']) ? $admin['offers']['offer'] : $admin['offers'],
 			'extras'  	=> !empty($admin['extras']['item']) ? $admin['extras']['item'] : $admin['extras'],
+			'buses'  	=> !empty($admin['buses']) ? $admin['buses'] : array(),
 			//'offers'  	=> Common::padZeroArray($admin['offers']),
 			'info' 		=> !empty($admin['info']['line']) ? $admin['info']['line'] : $admin['info'],
 			'confirmation'	=> !empty($admin['confirmation']) ? $admin['confirmation'] : array(),
@@ -251,6 +262,28 @@ class ORM extends Eloquent {
 				if (!empty($extras)) {
 				    $attributes = !empty($extras['@attributes']) ? $extras['@attributes'] : $extras;
 				    $this->extras->push(new ORMExtras($attributes));
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Create ORM buses.
+	 *
+	 * @param array $attributes
+	 * 		data must be inside $attributes[buses]
+	 */
+	public function createBuses($attributes) {
+		$this->extras = new Collection();
+		
+		if (!empty($attributes['buses'])) {
+
+			$attributes['buses'] = Common::padZeroArray($attributes['buses']);
+
+			foreach ($attributes['buses'] as $bus) {
+				if (!empty($bus)) {
+				    $attributes = !empty($bus['@attributes']) ? $bus['@attributes'] : $bus;
+				    $this->buses->push(new OAMBus($attributes));
 				}
 			}
 		}
@@ -614,6 +647,7 @@ class ORM extends Eloquent {
 		$array['persons']  = $this->persons->toArray();
 		$array['offers']   = $this->offers->toArray();
 		$array['extras']   = $this->extras->toArray();
+		$array['buses']    = $this->buses->toArray();
 		$array['confirmation']   = $this->confirmation->toArray();
 		$array['attachment']   = $this->attachment->toArray();
 		return $array;
@@ -647,7 +681,8 @@ class ORM extends Eloquent {
 		$array['admin']['travellers'] = ORMPerson::transformForApi($this->persons)->toArray();
 		$array['admin']['services']   = $this->services->toArray();
 		$array['admin']['extras']     = $this->extras->toArray();
-		$array['admin']['confirmation']     = $this->confirmation->toArray();
+		$array['admin']['buses']      = $this->buses->toArray();
+		$array['admin']['confirmation']   = $this->confirmation->toArray();
 		$array['admin']['attachment']     = $this->attachment->toArray();
 		
 		// Fix AGN

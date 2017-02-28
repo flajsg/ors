@@ -23,6 +23,7 @@ class OAMAvailability extends Eloquent {
 		$this->persons = new Collection();
 		$this->extras = new Collection();
 		$this->services = new Collection();
+		$this->buses = new Collection();
 	}
 	
 	/**
@@ -77,7 +78,13 @@ class OAMAvailability extends Eloquent {
 	    if (!empty($data['persons']))
 	    	foreach ($data['persons'] as $p)
 	    		$instance->persons->push(new OAMAvailabilityPerson($p));
-	    
+
+	    // Add Buses
+	    if (!empty($data['buses'])) {
+	        foreach ($data['buses'] as $b)
+	        	$instance->buses->push(new OAMBus($b));
+	    }
+	     
 	    return $instance;
 	}
 
@@ -121,19 +128,19 @@ class OAMAvailability extends Eloquent {
     
     /**
      * Persons
-     * @var Collection|OAMAvailabilityPerson[]
+     * @var Collection|OAMAvailabilityPerson
      */
     public $persons;
     
     /**
      * Extras
-     * @var Collection|OAMAvailabilityExtras[]
+     * @var Collection|OAMAvailabilityExtras
      */
     public $extras;
     
     /**
      * Services
-     * @var Collection|OAMAvailabilityService[]
+     * @var Collection|OAMAvailabilityService
      */
     public $services;
     
@@ -143,6 +150,11 @@ class OAMAvailability extends Eloquent {
      */
     public $flightInfo;
     
+    /**
+     * Buses
+     * @var Collection|OAMBus
+     */
+    public $buses;
     
     /**
      * Override toArray to add additional attributes
@@ -170,6 +182,9 @@ class OAMAvailability extends Eloquent {
         
         if (!empty($this->flightInfo))
         	$array['flightInfo'] = $this->flightInfo->toArray();
+        
+        if (!empty($this->buses))
+            $array['buses'] = $this->buses->toArray();
         
         $array['persons'] = $this->persons->toArray();
         return $array;
