@@ -18,7 +18,7 @@ class ORMPassenger extends Eloquent implements SmartAutocompleteInterface {
 	
 	
 	protected $fillable = ['id', 'agency_id', 'sex', 'first_name', 'last_name', 'birth_date', 'email', 'telephone', 'mobile_phone', 'city', 'street', 'zip_code', 'country', 
-		'deleted', 'api_added', 'last_modified', 'merged_to', 'merged_from', 'read_only'];
+		'deleted', 'api_added', 'last_modified', 'merged_to', 'merged_from', 'read_only', 'booking_created'];
 	
 	protected $primaryKey = 'id';
 	
