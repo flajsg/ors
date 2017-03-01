@@ -268,4 +268,19 @@ class ORMPassenger extends Eloquent implements SmartAutocompleteInterface {
 	    return $this->ApiAdded;
 	}
 	
+	/**
+	 * Return true if this is a copy of the real passenger and is already on some booking.
+	 * 
+	 * To understand: sometimes system need to create a copy of the real passenger
+	 * in order to make changes on an existing booking. In such cases: 
+	 * - sistem creates a copy of the previous passenger, 
+	 * - add modifications needed,
+	 * - create link between the two passenger (so that this new one is linked to the original),
+	 * - and adds a booking number (booking_created) to it, so we know to which booking it belongs.
+	 * 
+	 * @return boolean
+	 */
+	public function isBookingCreated() {
+		return isset($this->attributes['booking_created']) ? (bool)$this->attributes['booking_created'] : false;
+	}
 }
