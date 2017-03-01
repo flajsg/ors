@@ -282,7 +282,7 @@ class ORM extends Eloquent {
 
 			foreach ($attributes['buses'] as $bus) {
 				if (!empty($bus)) {
-				    $attributes = $bus['attributes'];
+				    $attributes = !empty($bus['attributes']) ? $bus['attributes'] : $bus;
 				    $attributes['seats'] = @$bus['seats'];
 				    $this->buses->push(new OAMBus($attributes));
 				}
