@@ -274,7 +274,7 @@ class ORM extends Eloquent {
 	 * 		data must be inside $attributes[buses]
 	 */
 	public function createBuses($attributes) {
-		$this->extras = new Collection();
+		$this->buses = new Collection();
 		
 		if (!empty($attributes['buses'])) {
 
