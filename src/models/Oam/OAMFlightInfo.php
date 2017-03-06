@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Database\Eloquent\Collection;
+use Ors\Support\Common;
 
 /**
  * ORS API Model: FlightInfo
