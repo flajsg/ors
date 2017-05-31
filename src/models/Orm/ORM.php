@@ -501,15 +501,15 @@ class ORM extends Eloquent {
 				'str' => $this->user->account->address,
 				'is_agency' => 1,
 			));
-		} elseif ($this->customer==1 && $this->login->subaccount) {
-			return new ORMPerson(array(
-			    'sur' => $this->login->subaccount->name,
-			    'eml' => $this->login->subaccount->email,
-			    'tel' => $this->login->subaccount->tel,
-			    'cty' => $this->login->subaccount->city,
-			    'zip' => $this->login->subaccount->zip,
-			    'cny' => $this->login->subaccount->country->countryCode,
-			    'str' => $this->login->subaccount->address,
+		} elseif ($this->customer==1) {
+            return new ORMPerson(array(
+			    'sur' => $this->login->subnm,
+			    'eml' => $this->login->subem,
+			    'tel' => "",
+			    'cty' => "",
+			    'zip' => "",
+			    'cny' => "",
+			    'str' => "",
 			    'is_agency' => 1,
 			));
 		}
